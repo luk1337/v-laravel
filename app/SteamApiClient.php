@@ -48,4 +48,24 @@ class SteamApiClient
         $json = json_decode($request->getBody(), true);
         return $json['response'];
     }
+
+    function convertToSteamID64($str) {
+        if (preg_match('/^\d{17}$/', $str, $matches)) {
+            return matches[0];
+        }
+
+        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $str, $matches)) {
+            return matches[1];
+        }
+
+        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $str, $matches)) {
+            $response = $this->resolveVanityURL($matches[1]);
+
+            if ($response['success'] == 1) {
+                return $response['steamid'];
+            }
+        }
+
+        return '0';
+    }
 }

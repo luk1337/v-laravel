@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\SteamApiClient;
 use App\UserList;
-use App\UserListAccount;
 use App\UserListSubscription;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webpatser\Uuid\Uuid;
@@ -41,61 +39,14 @@ class UserListController extends Controller
         $steamIds = [];
 
         foreach (preg_split('/\r\n|[\r\n]/', $request->steamids) as $sid) {
-            if (preg_match('/^\d{17}$/', $sid, $matches)) {
-                array_push($steamIds, $matches[0]);
-            } else if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $sid, $matches)) {
-                array_push($steamIds, $matches[1]);
-            } else if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $sid, $matches)) {
-                $response = $steamApiClient->resolveVanityURL($matches[1]);
+            $steamId = $steamApiClient->convertToSteamID64($sid);
 
-                if ($response['success'] == 1) {
-                    array_push($steamIds, $response['steamid']);
-                }
+            if (!empty($steamId)) {
+                array_push($steamIds, $steamId);
             }
         }
 
-        foreach (array_chunk($steamIds, 100) as $steamIds) {
-            $summaries = $steamApiClient->getPlayerSummaries(implode(',', $steamIds));
-            $bans = $steamApiClient->getPlayerBans(implode(',', $steamIds));
-
-            foreach ($steamIds as $steamId) {
-                $summary = array_filter(
-                    $summaries,
-                    function ($e) use($steamId) {
-                        return $e['steamid'] == $steamId;
-                    }
-                );
-
-                if (empty($summary)) {
-                    continue;
-                }
-
-                $ban = array_filter(
-                    $bans,
-                    function ($e) use($steamId) {
-                        return $e['SteamId'] == $steamId;
-                    }
-                );
-
-                if (empty($ban)) {
-                    continue;
-                }
-
-                $summary = array_shift($summary);
-                $ban = array_shift($ban);
-
-                $account = UserListAccount::firstOrNew(['steamid' => $steamId]);
-                $account->steamid = $steamId;
-                $account->avatar = $summary['avatar'];
-                $account->name = $summary['personaname'];
-                $account->number_of_vac_bans = $ban['NumberOfVACBans'];
-                $account->number_of_game_bans = $ban['NumberOfGameBans'];
-                $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);
-                $account->save();
-
-                $list->accounts()->syncWithoutDetaching([$account->id]);
-            }
-        }
+        $list->addToList($steamIds);
 
         return redirect()->route('list/show', ['uuid' => $uuid]);
     }
@@ -109,7 +60,7 @@ class UserListController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:64',
-            'privacy' => 'required|in:' . implode(",", array_keys(UserList::$listPrivacyTypes))
+            'privacy' => 'required|in:' . implode(',', array_keys(UserList::$listPrivacyTypes))
         ]);
 
         $list = new UserList;
@@ -171,7 +122,7 @@ class UserListController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|max:64',
-            'privacy' => 'required|in:' . implode(",", array_keys(UserList::$listPrivacyTypes))
+            'privacy' => 'required|in:' . implode(',', array_keys(UserList::$listPrivacyTypes))
         ]);
 
         $list = UserList::where('user_id', Auth::User()->id)
