@@ -95,7 +95,7 @@ class UserListController extends Controller
             }
         }
 
-        return Redirect::back();
+        return redirect()->route('list/show', ['uuid' => $uuid]);
     }
 
     public function getCreate()
