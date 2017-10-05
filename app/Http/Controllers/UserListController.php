@@ -105,7 +105,8 @@ class UserListController extends Controller
         $list = UserList::where('user_id', Auth::User()->id)
             ->where('uuid', $uuid)
             ->firstOrFail();
-        $list->accounts()->detach($list->accounts()
+        $list->accounts()
+            ->detach($list->accounts()
             ->where('steamid', $steamid)
             ->firstOrFail());
 
