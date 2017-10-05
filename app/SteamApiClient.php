@@ -51,11 +51,11 @@ class SteamApiClient
 
     function convertToSteamID64($str) {
         if (preg_match('/^\d{17}$/', $str, $matches)) {
-            return matches[0];
+            return $matches[0];
         }
 
         if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $str, $matches)) {
-            return matches[1];
+            return $matches[1];
         }
 
         if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $str, $matches)) {
