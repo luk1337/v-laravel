@@ -44,7 +44,9 @@ Route::post('/list/add', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)->where('uuid', $request->uuid)->first();
+    $list = UserList::where('user_id', $user->id)
+        ->where('uuid', $request->uuid)
+        ->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -135,7 +137,9 @@ Route::post('/list/delete', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)->where('uuid', $request->uuid)->first();
+    $list = UserList::where('user_id', $user->id)
+        ->where('uuid', $request->uuid)
+        ->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -177,7 +181,9 @@ Route::post('/list/delete/account', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)->where('uuid', $request->uuid)->first();
+    $list = UserList::where('user_id', $user->id)
+        ->where('uuid', $request->uuid)
+        ->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -229,7 +235,9 @@ Route::post('/list/edit', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)->where('uuid', $request->uuid)->first();
+    $list = UserList::where('user_id', $user->id)
+        ->where('uuid', $request->uuid)
+        ->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -266,7 +274,8 @@ Route::post('/list/my', function (Request $request) {
         ]);
     }
 
-    $lists = UserList::where('user_id', $user->id)->get(['uuid', 'name', 'privacy', 'created_at']);
+    $lists = UserList::where('user_id', $user->id)
+        ->get(['uuid', 'name', 'privacy', 'created_at']);
 
     return response()->json([
         'status' => 'success',
@@ -323,7 +332,8 @@ Route::post('/list/public', function (Request $request) {
         ]);
     }
 
-    $lists = UserList::where('privacy', 'public')->get();
+    $lists = UserList::where('privacy', 'public')
+        ->get();
 
     return response()->json([
         'status' => 'success',
