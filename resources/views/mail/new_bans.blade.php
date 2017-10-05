@@ -1,7 +1,7 @@
 @component('mail::message')
 # Hello!
 
-You are receiving this email because someone just got banned from your list 〜 {{ $list->name }}!
+You are receiving this email because someone just got banned from list 〜 {{ $list->name }}!
 
 @component('mail::table')
 | Avatar                          | Name                 | Game bans                          | VAC bans                            |
