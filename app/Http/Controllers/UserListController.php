@@ -209,11 +209,9 @@ class UserListController extends Controller
         $list = UserList::where(function ($query) {
             if (Auth::check()) {
                 $query->where('user_id', Auth::User()->id)
-                    ->orWhere('privacy', "public")
-                    ->orWhere('privacy', "unlisted");
+                    ->whereIn('privacy', ['public', 'unlisted'], 'or');
             } else {
-                $query->where('privacy', "public")
-                    ->orWhere('privacy', "unlisted");
+                $query->whereIn('privacy', ['public', 'unlisted'], 'or');
             }
         })->where('uuid', $uuid)->firstOrFail();
         $accounts = $list->accounts()->paginate(150);
