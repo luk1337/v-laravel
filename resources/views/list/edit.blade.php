@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 style="margin-top: 0">Edit list</h2>
+            <h2 style="margin-top: 0">Editing list 〜 {{ $list->name }}</h2>
 
             <form class="form-horizontal" method="post">
                 {{ csrf_field() }}
