@@ -22,7 +22,7 @@
                 <div class="clearfix"></div>
             @endauth
 
-            @if ($list->accounts()->get()->isEmpty())
+            @if ($accounts->isEmpty())
                 <b>Sowwy, it looks like this list is empty.</b>
             @else
                 <table class="table table-striped">
