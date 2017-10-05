@@ -16,7 +16,7 @@ class SteamApiClient
         ]);
     }
 
-    function GetPlayerBans($steamIds) {
+    function getPlayerBans($steamIds) {
         $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerBans/v1', [
             'query' => [
                 'key' => $this->apiKey,
