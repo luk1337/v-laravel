@@ -19,7 +19,7 @@ use Webpatser\Uuid\Uuid;
 */
 
 Route::post('/list/add', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -74,7 +74,7 @@ Route::post('/list/add', function (Request $request) {
 });
 
 Route::post('/list/create', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -119,7 +119,7 @@ Route::post('/list/create', function (Request $request) {
 });
 
 Route::post('/list/delete', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -156,7 +156,7 @@ Route::post('/list/delete', function (Request $request) {
 });
 
 Route::post('/list/delete/account', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -203,7 +203,7 @@ Route::post('/list/delete/account', function (Request $request) {
 });
 
 Route::post('/list/edit', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -256,7 +256,7 @@ Route::post('/list/edit', function (Request $request) {
 });
 
 Route::post('/list/my', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -284,7 +284,7 @@ Route::post('/list/my', function (Request $request) {
 });
 
 Route::post('/list/my/subscriptions', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -314,7 +314,7 @@ Route::post('/list/my/subscriptions', function (Request $request) {
 });
 
 Route::post('/list/public', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -342,7 +342,7 @@ Route::post('/list/public', function (Request $request) {
 });
 
 Route::post('/list/subscribe', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -380,7 +380,7 @@ Route::post('/list/subscribe', function (Request $request) {
 });
 
 Route::post('/list/unsubscribe', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
@@ -418,7 +418,7 @@ Route::post('/list/unsubscribe', function (Request $request) {
 });
 
 Route::post('/list/show', function (Request $request) {
-    if (is_null($request->key)) {
+    if (is_null($request->api_key)) {
         return response()->json([
             'status' => 'error',
             'message' => 'Missing API key.',
