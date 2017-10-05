@@ -12,7 +12,7 @@
                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                     <label for="name" class="col-sm-4 control-label">Name</label>
                     <div class="col-sm-4">
-                        <input id="name" type="text" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
+                        <input id="name" type="text" maxlength="32" class="form-control" name="name" placeholder="Name" value="{{ old('name') }}" required autofocus>
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('privacy') ? ' has-error' : '' }}">
