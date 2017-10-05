@@ -32,4 +32,6 @@ Route::get('/list/unsubscribe/{uuid}', 'UserListController@getUnsubscribe')->nam
 Route::post('/list/unsubscribe/{uuid}', 'UserListController@postUnsubscribe')->name('list/unsubscribe');
 Route::get('/list/show/{uuid}', 'UserListController@getShow')->name('list/show');
 
+Route::get('/latest-bans', 'LatestBansController@getIndex')->name('latest-bans');
+
 Auth::routes();

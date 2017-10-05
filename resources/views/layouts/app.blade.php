@@ -46,6 +46,7 @@
                                 @endauth
                             </ul>
                         </li>
+                        <li><a href="{{ route('latest-bans') }}">Latest bans</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
