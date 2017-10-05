@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('v:fetch-new-bans')
-            ->everyTenMinutes();
+            ->everyFiveMinutes();
     }
 
     /**
