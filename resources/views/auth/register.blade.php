@@ -48,6 +48,12 @@
                 <div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
                     <div class="col-md-4 col-md-offset-4">
                         {!! Captcha::display() !!}
+
+                        @if ($errors->has('g-recaptcha-response'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                            </span>
+                        @endif
                     </div>
                 </div>
 
@@ -62,5 +68,6 @@
         </d iv>
     </div>
 </div>
-{!! Captcha::script() !!}
 @endsection
+
+{!! Captcha::script() !!}
