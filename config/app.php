@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Arcanedev\NoCaptcha\NoCaptchaServiceProvider::class,
     ],
 
     /*
@@ -226,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Captcha' => Arcanedev\NoCaptcha\Facades\NoCaptcha::class,
     ],
 
 ];
