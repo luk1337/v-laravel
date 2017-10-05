@@ -41,7 +41,9 @@ class UserListController extends Controller
         $steamIds = [];
 
         foreach (preg_split('/\r\n|[\r\n]/', $request->steamids) as $sid) {
-            if (preg_match('/^\d{17}$/', $sid, $matches) || preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $sid, $matches)) {
+            if (preg_match('/^\d{17}$/', $sid, $matches)) {
+                array_push($steamIds, $matches[0]);
+            } else if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $sid, $matches)) {
                 array_push($steamIds, $matches[1]);
             } else if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $sid, $matches)) {
                 $response = $steamApiClient->resolveVanityURL($matches[1]);
