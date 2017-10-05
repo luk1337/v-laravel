@@ -19,4 +19,8 @@ class UserList extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
+
+    public function accounts() {
+        return $this->belongsToMany('App\UserListAccount');
+    }
 }

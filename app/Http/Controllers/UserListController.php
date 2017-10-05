@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\SteamApiClient;
 use App\UserList;
+use App\UserListAccount;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Webpatser\Uuid\Uuid;
 
 class UserListController extends Controller
@@ -18,6 +22,80 @@ class UserListController extends Controller
                 'getShow',
             ]
         ]);
+    }
+
+    public function getAdd($uuid)
+    {
+        return view('list/add')
+            ->with('list', UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail());
+    }
+
+    public function postAdd(Request $request, $uuid)
+    {
+        $this->validate($request, [
+            'steamids' => 'required',
+        ]);
+
+        $steamApiClient = new SteamApiClient;
+        $list = UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail();
+        $steamIds = [];
+
+        foreach (preg_split('/\r\n|[\r\n]/', $request->steamids) as $sid) {
+            if (preg_match('/^\d{17}$/', $sid, $matches) || preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $sid, $matches)) {
+                array_push($steamIds, $matches[1]);
+            } else if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $sid, $matches)) {
+                $response = $steamApiClient->resolveVanityURL($matches[1]);
+
+                if ($response['success'] == 1) {
+                    array_push($steamIds, $response['steamid']);
+                }
+            }
+        }
+
+        foreach (array_chunk($steamIds, 100) as $steamIds) {
+            $summaries = $steamApiClient->getPlayerSummaries(implode(',', $steamIds));
+            $bans = $steamApiClient->getPlayerBans(implode(',', $steamIds));
+
+            foreach ($steamIds as $steamId) {
+                $summary = array_filter(
+                    $summaries,
+                    function ($e) use($steamId) {
+                        return $e['steamid'] == $steamId;
+                    }
+                );
+
+                if (empty($summary)) {
+                    continue;
+                }
+
+                $ban = array_filter(
+                    $bans,
+                    function ($e) use($steamId) {
+                        return $e['SteamId'] == $steamId;
+                    }
+                );
+
+                if (empty($ban)) {
+                    continue;
+                }
+
+                $summary = array_shift($summary);
+                $ban = array_shift($ban);
+
+                $account = UserListAccount::firstOrNew(['steamid' => $steamId]);
+                $account->steamid = $steamId;
+                $account->avatar = $summary['avatar'];
+                $account->name = $summary['personaname'];
+                $account->number_of_vac_bans = $ban['NumberOfVACBans'];
+                $account->number_of_game_bans = $ban['NumberOfGameBans'];
+                $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);
+                $account->save();
+
+                $list->accounts()->syncWithoutDetaching([$account->id]);
+            }
+        }
+
+        return Redirect::back();
     }
 
     public function getCreate()
@@ -53,7 +131,25 @@ class UserListController extends Controller
         $list = UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail();
         $list->delete();
 
-        return redirect('/list/my');
+        return redirect()->route('list/show', ['uuid' => $uuid]);
+    }
+
+    public function getDeleteAccount($uuid, $steamid)
+    {
+        $list = UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail();
+        $account = $list->accounts()->where('steamid', $steamid)->firstOrFail();
+
+        return view('list/delete_account')
+            ->with('list', $list)
+            ->with('account', $account);
+    }
+
+    public function postDeleteAccount(Request $request, $uuid, $steamid)
+    {
+        $list = UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail();
+        $list->accounts()->detach($list->accounts()->where('steamid', $steamid)->firstOrFail());
+
+        return redirect()->route('list/show', ['uuid' => $uuid]);
     }
 
     public function getEdit($uuid)
@@ -91,16 +187,20 @@ class UserListController extends Controller
 
     public function getShow($uuid)
     {
+        $list = UserList::where(function ($query) {
+            if (Auth::check()) {
+                $query->where('user_id', Auth::User()->id)
+                    ->orWhere('privacy', "public")
+                    ->orWhere('privacy', "unlisted");
+            } else {
+                $query->where('privacy', "public")
+                    ->orWhere('privacy', "unlisted");
+            }
+        })->where('uuid', $uuid)->firstOrFail();
+        $accounts = $list->accounts()->paginate(150);
+
         return view('list/show')
-            ->with('list', UserList::where(function ($query) {
-                if (Auth::check()) {
-                    $query->where('user_id', Auth::User()->id)
-                        ->orWhere('privacy', "public")
-                        ->orWhere('privacy', "unlisted");
-                } else {
-                    $query->where('privacy', "public")
-                        ->orWhere('privacy', "unlisted");
-                }
-            })->where('uuid', $uuid)->firstOrFail());
+            ->with('list', $list)
+            ->with('accounts', $accounts);
     }
 }

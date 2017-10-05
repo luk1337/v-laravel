@@ -13,10 +13,14 @@
 
 Route::get('/', 'HomeController@getIndex')->name('home');
 
+Route::get('/list/add/{uuid}', 'UserListController@getAdd')->name('list/add');
+Route::post('/list/add/{uuid}', 'UserListController@postAdd')->name('list/add');
 Route::get('/list/create', 'UserListController@getCreate')->name('list/create');
 Route::post('/list/create', 'UserListController@postCreate')->name('list/create');
 Route::get('/list/delete/{uuid}', 'UserListController@getDelete')->name('list/delete');
 Route::post('/list/delete/{uuid}', 'UserListController@postDelete')->name('list/delete');
+Route::get('/list/delete/{uuid}/{steamid}', 'UserListController@getDeleteAccount')->name('list/delete/account');
+Route::post('/list/delete/{uuid}/{steamid}', 'UserListController@postDeleteAccount')->name('list/delete/account');
 Route::get('/list/edit/{uuid}', 'UserListController@getEdit')->name('list/edit');
 Route::post('/list/edit/{uuid}', 'UserListController@postEdit')->name('list/edit');
 Route::get('/list/my', 'UserListController@getMy')->name('list/my');

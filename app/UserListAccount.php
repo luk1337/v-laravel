@@ -1,0 +1,16 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserListAccount extends Model
+{
+    protected $fillable = [
+        'steamid', 'avatar', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date',
+    ];
+
+    public function lists() {
+        return $this->belongsToMany('App\UserList');
+    }
+}

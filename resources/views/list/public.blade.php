@@ -25,7 +25,7 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a></td>
                                 <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
-                                <td>0</td>
+                                <td>{{ $list->accounts->count() }}</td>
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                             </tr>
                         @endforeach
