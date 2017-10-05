@@ -45,6 +45,7 @@ class NewBansNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->subject('New bans were found on your list')
             ->markdown('mail.new_bans', [
                 'list' => $this->list,
                 'accounts' => $this->accounts,
