@@ -104,6 +104,12 @@ class FetchNewBans extends Command
             $accounts = UserListAccount::findMany($value);
 
             $list->user()->first()->notify(new NewBansNotification($list, $accounts));
+
+            if ($list->privacy != 'private') {
+                foreach ($list->subscribers()->get() as $subscriber) {
+                    $subscriber->user()->first()->notify(new NewBansNotification($list, $accounts));
+                }
+            }
         }
     }
 }

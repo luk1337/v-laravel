@@ -4,17 +4,23 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            @if (Auth::check() && $list->user_id == Auth::user()->id)
-                <div class="pull-left">
-                    <h2 style="margin-top: 0">Showing list 〜 {{ $list->name }}</h2>
-                </div>
+            <div class="pull-left">
+                <h2 style="margin-top: 0">Showing list 〜 {{ $list->name }}</h2>
+            </div>
+            @auth
                 <div class="pull-right">
-                    <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-default pull-right">Add account</a>
+                    @if ($list->user_id == Auth::user()->id)
+                        <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-default">Add account</a>
+                    @else
+                        @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
+                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-success">Subscribe</a>
+                        @else
+                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-danger">Unsubscribe</a>
+                        @endif
+                    @endif
                 </div>
                 <div class="clearfix"></div>
-            @else
-                <h2 style="margin-top: 0">Showing list 〜 {{ $list->name }}</h2>
-            @endif
+            @endauth
 
             @if ($list->accounts()->get()->isEmpty())
                 <b>Sowwy, it looks like this list is empty.</b>

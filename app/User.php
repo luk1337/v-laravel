@@ -30,4 +30,8 @@ class User extends Authenticatable
     public function lists() {
         return $this->hasMany('App\UserList');
     }
+
+    public function subscriptions() {
+        return $this->hasMany('App\UserListSubscription');
+    }
 }

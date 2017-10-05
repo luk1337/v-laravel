@@ -24,7 +24,12 @@ Route::post('/list/delete/{uuid}/{steamid}', 'UserListController@postDeleteAccou
 Route::get('/list/edit/{uuid}', 'UserListController@getEdit')->name('list/edit');
 Route::post('/list/edit/{uuid}', 'UserListController@postEdit')->name('list/edit');
 Route::get('/list/my', 'UserListController@getMy')->name('list/my');
+Route::get('/list/my/subscriptions', 'UserListController@getMySubscriptions')->name('list/my/subscriptions');
 Route::get('/list/public', 'UserListController@getPublic')->name('list/public');
+Route::get('/list/subscribe/{uuid}', 'UserListController@getSubscribe')->name('list/subscribe');
+Route::post('/list/subscribe/{uuid}', 'UserListController@postSubscribe')->name('list/subscribe');
+Route::get('/list/unsubscribe/{uuid}', 'UserListController@getUnsubscribe')->name('list/unsubscribe');
+Route::post('/list/unsubscribe/{uuid}', 'UserListController@postUnsubscribe')->name('list/unsubscribe');
 Route::get('/list/show/{uuid}', 'UserListController@getShow')->name('list/show');
 
 Auth::routes();

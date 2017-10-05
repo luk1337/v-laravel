@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 style="margin-top: 0">Public lists</h2>
+                <h2 style="margin-top: 0">My subscribed lists</h2>
 
                 @if ($lists->isEmpty())
-                    <b>Sowwy, it looks like there are no public lists.</b>
+                    <b>Sowwy, it looks like you didn't subscribe to any list.</b>
                 @else
                     <table class="table table-striped">
                         <thead>
@@ -17,9 +17,7 @@
                             <th>Privacy</th>
                             <th>Users</th>
                             <th>Creation date</th>
-                            @auth
-                                <th>Actions</th>
-                            @endauth
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,13 +29,7 @@
                                 <td>{{ $list->accounts->count() }}</td>
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                 <td>
-                                    @if (Auth::Check() && $list->user_id != Auth::User()->id)
-                                        @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
-                                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-xs btn-success">Subscribe</a>
-                                        @else
-                                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-xs btn-danger">Unsubscribe</a>
-                                        @endif
-                                    @endif
+                                    <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-xs btn-danger">Unsubscribe</a>
                                 </td>
                             </tr>
                         @endforeach

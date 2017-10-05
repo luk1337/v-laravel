@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\SteamApiClient;
 use App\UserList;
 use App\UserListAccount;
+use App\UserListSubscription;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -131,7 +132,7 @@ class UserListController extends Controller
         $list = UserList::where('user_id', Auth::User()->id)->where('uuid', $uuid)->firstOrFail();
         $list->delete();
 
-        return redirect()->route('list/show', ['uuid' => $uuid]);
+        return redirect('/list/my');
     }
 
     public function getDeleteAccount($uuid, $steamid)
@@ -179,6 +180,17 @@ class UserListController extends Controller
             ->with('lists', UserList::where('user_id', Auth::User()->id)->get());
     }
 
+    public function getMySubscriptions()
+    {
+        $user = Auth::user();
+        $lists = UserList::where('user_id', $user->id)
+            ->whereIn('id', $user->subscriptions()->get(['user_list_id']))
+            ->whereIn('privacy', ['public', 'unlisted'])->get();
+
+        return view('list/my_subscriptions')
+            ->with('lists', $lists);
+    }
+
     public function getPublic()
     {
         return view('list/public')
@@ -202,5 +214,47 @@ class UserListController extends Controller
         return view('list/show')
             ->with('list', $list)
             ->with('accounts', $accounts);
+    }
+
+    public function getSubscribe($uuid)
+    {
+        $list = UserList::where('user_id', '!=', Auth::user()->id)->where('uuid', $uuid)
+            ->whereIn('privacy', ['public', 'unlisted'])->firstOrFail();
+
+        return view('list/subscribe')
+            ->with('list', $list);
+    }
+
+    public function postSubscribe(Request $request, $uuid)
+    {
+        $user = Auth::user();
+        $list = UserList::where('user_id', '!=', $user->id)->where('uuid', $uuid)
+            ->whereIn('privacy', ['public', 'unlisted'])->firstOrFail();
+
+        $subscription = UserListSubscription::firstOrNew(['user_list_id' => $list->id, 'user_id' => $user->id]);
+        $subscription->save();
+
+        return redirect('/list/public');
+    }
+
+    public function getUnsubscribe($uuid)
+    {
+        $list = UserList::where('user_id', '!=', Auth::user()->id)->where('uuid', $uuid)
+            ->whereIn('privacy', ['public', 'unlisted'])->firstOrFail();
+
+        return view('list/unsubscribe')
+            ->with('list', $list);
+    }
+
+    public function postUnsubscribe(Request $request, $uuid)
+    {
+        $user = Auth::user();
+        $list = UserList::where('user_id', '!=', $user->id)->where('uuid', $uuid)
+            ->whereIn('privacy', ['public', 'unlisted'])->firstOrFail();
+
+        $subscription = UserListSubscription::firstOrNew(['user_list_id' => $list->id, 'user_id' => $user->id]);
+        $subscription->delete();
+
+        return redirect('/list/public');
     }
 }
