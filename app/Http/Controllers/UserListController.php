@@ -192,7 +192,8 @@ class UserListController extends Controller
         $user = Auth::user();
         $lists = UserList::where('user_id', '!=', $user->id)
             ->whereIn('id', $user->subscriptions()->get(['user_list_id']))
-            ->whereIn('privacy', ['public', 'unlisted'])->get();
+            ->whereIn('privacy', ['public', 'unlisted'])
+            ->get();
 
         return view('list/my_subscriptions')
             ->with('lists', $lists);
@@ -214,7 +215,9 @@ class UserListController extends Controller
                 $query->whereIn('privacy', ['public', 'unlisted'], 'or');
             }
         })->where('uuid', $uuid)->firstOrFail();
-        $accounts = $list->accounts()->paginate(150);
+        $accounts = $list->accounts()
+            ->orderBy('id', 'desc')
+            ->paginate(150);
 
         return view('list/show')
             ->with('list', $list)
