@@ -66,6 +66,10 @@ class SteamApiClient
             }
         }
 
+        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/\[U:1:(\d+)\][\/]?$/', $str, $matches)) {
+            return $matches[1] + 0x0110000100000000;
+        }
+
         if (preg_match('/^STEAM_(\d+):(\d+):(\d+)$/', $str, $matches)) {
             return $matches[3] * 2 + 0x0110000100000000 + $matches[2];
         }
