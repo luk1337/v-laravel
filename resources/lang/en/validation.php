@@ -103,6 +103,9 @@ return [
         'g-recaptcha-response' => [
             'required' => 'We need to check the captcha field!',
         ],
+        'current_password' => [
+            'user_password' => 'You need to enter a valid current password!',
+        ],
     ],
 
     /*

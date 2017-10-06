@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@getIndex')->name('home');
 
+Route::get('/change-password', 'Auth\ChangePasswordController@getIndex')->name('change-password');
+Route::post('/change-password', 'Auth\ChangePasswordController@postIndex')->name('change-password');
+
 Route::get('/list/add/{uuid}', 'UserListController@getAdd')->name('list/add');
 Route::post('/list/add/{uuid}', 'UserListController@postAdd')->name('list/add');
 Route::get('/list/create', 'UserListController@getCreate')->name('list/create');
