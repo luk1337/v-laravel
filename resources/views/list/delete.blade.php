@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Deleting list 〜 ' . $list->name])
 
 @section('content')
 <div class="container">

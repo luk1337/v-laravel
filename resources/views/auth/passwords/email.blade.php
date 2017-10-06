@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Reset password'])
 
 @section('content')
 <div class="container">
@@ -10,7 +10,7 @@
                 </div>
             @endif
 
-            <h2 style="margin-top: 0">Reset Password</h2>
+            <h2 style="margin-top: 0">Reset password</h2>
 
             <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                 {{ csrf_field() }}

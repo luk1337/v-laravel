@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'My subscribed lists'])
 
 @section('content')
     <div class="container">

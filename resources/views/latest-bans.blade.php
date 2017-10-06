@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['title' => 'Latest bans'])
 
 @section('content')
 <div class="container">
