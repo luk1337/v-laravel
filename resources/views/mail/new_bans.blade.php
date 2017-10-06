@@ -4,10 +4,10 @@
 You are receiving this email because someone just got banned from list 〜 {{ $list->name }}!
 
 @component('mail::table')
-| Avatar                          | Name                 | Game bans                           | VAC bans                           |
-|:-------------------------------:| -------------------- |:-----------------------------------:|:----------------------------------:|
+| Avatar                          | Name                                                                                | Game bans                           | VAC bans                           |
+|:-------------------------------:| ----------------------------------------------------------------------------------- |:-----------------------------------:|:----------------------------------:|
 @foreach ($accounts as $account)
-| ![avatar]({{$account->avatar}}) | {{ $account->name }} | {{ $account->number_of_game_bans }} | {{ $account->number_of_vac_bans }}
+| ![avatar]({{$account->avatar}}) | [{{ $account->name }}](https://steamcommunity.com/profiles/{{ $account->steamid }}) | {{ $account->number_of_game_bans }} | {{ $account->number_of_vac_bans }}
 @endforeach
 @endcomponent
 @endcomponent
