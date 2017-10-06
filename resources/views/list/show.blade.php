@@ -45,8 +45,8 @@
                             <th style="vertical-align: middle" scope="row">{{ $loop->iteration }}</th>
                             <td style="vertical-align: middle"><img src="{{ $account->avatar }}" /></td>
                             <td style="vertical-align: middle"><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
-                            <td style="vertical-align: middle">{{ $account->number_of_game_bans }}</td>
-                            <td style="vertical-align: middle">{{ $account->number_of_vac_bans }}</td>
+                            <td style="vertical-align: middle{{$account->number_of_game_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_game_bans }}</td>
+                            <td style="vertical-align: middle{{$account->number_of_vac_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_vac_bans }}</td>
                             <td style="vertical-align: middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
                             @if (Auth::check() && $list->user_id == Auth::user()->id)
                                 <td style="vertical-align: middle">
