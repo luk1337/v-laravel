@@ -78,6 +78,14 @@ class SteamApiClient
             return $matches[1] + 0x0110000100000000;
         }
 
+        if (preg_match('/^(\w+)$/', $str, $matches)) {
+            $response = $this->resolveVanityURL($matches[1]);
+
+            if ($response['success'] == 1) {
+                return $response['steamid'];
+            }
+        }
+
         return '0';
     }
 }
