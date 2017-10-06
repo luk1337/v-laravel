@@ -70,6 +70,10 @@ class SteamApiClient
             return $matches[3] * 2 + 0x0110000100000000 + $matches[2];
         }
 
+        if (preg_match('/^\[U:1:(\d+)\]$/', $str, $matches)) {
+            return $matches[1] + 0x0110000100000000;
+        }
+
         return '0';
     }
 }
