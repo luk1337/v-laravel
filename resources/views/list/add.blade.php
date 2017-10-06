@@ -12,7 +12,7 @@
                     <div class="form-group{{ $errors->has('steamids') ? ' has-error' : '' }}">
                         <label for="name" class="col-sm-4 control-label">Steam IDs</label>
                         <div class="col-sm-4">
-                            <textarea rows="12" cols="205" id="steamids" class="form-control" name="steamids" placeholder="http://steamcommunity.com/id/luk_1337&#10;http://steamcommunity.com/profiles/76561198058211132&#10;76561198058211132" required autofocus>
+                            <textarea rows="12" cols="205" id="steamids" class="form-control" name="steamids" placeholder="http://steamcommunity.com/id/luk_1337&#10;http://steamcommunity.com/profiles/76561198058211132&#10;76561198058211132&#10;STEAM_0:0:48972702" required autofocus>
                                 {{ (old('steamids') ?: $list->steamids) }}
                             </textarea>
                         </div>
