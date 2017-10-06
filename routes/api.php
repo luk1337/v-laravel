@@ -92,7 +92,7 @@ Route::post('/list/create', function (Request $request) {
         ]);
     }
 
-    if (empty($request->name) || strlen($request->name) > 32) {
+    if (empty($request->name) || strlen($request->name) > 64) {
         return response()->json([
             'status' => 'error',
             'message' => 'Invalid or missing `name` parameter.',
@@ -222,7 +222,7 @@ Route::post('/list/edit', function (Request $request) {
         ]);
     }
 
-    if (empty($request->name) || strlen($request->name) > 32) {
+    if (empty($request->name) || strlen($request->name) > 64) {
         return response()->json([
             'status' => 'error',
             'message' => 'Invalid or missing `name` parameter.',
