@@ -54,11 +54,11 @@ class SteamApiClient
             return $matches[0];
         }
 
-        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})$/', $str, $matches)) {
+        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/profiles\/(\d{17})[\/]?$/', $str, $matches)) {
             return $matches[1];
         }
 
-        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)$/', $str, $matches)) {
+        if (preg_match('/^http[s]?:\/\/steamcommunity.com\/id\/(\w+)[\/]?$/', $str, $matches)) {
             $response = $this->resolveVanityURL($matches[1]);
 
             if ($response['success'] == 1) {
