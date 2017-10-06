@@ -194,8 +194,8 @@ Route::post('/list/delete/account', function (Request $request) {
 
     $list->accounts()
         ->detach($list->accounts()
-        ->where('steamid', $request->steamid)
-        ->first());
+            ->where('steamid', $request->steamid)
+            ->first());
 
     return response()->json([
         'status' => 'success',

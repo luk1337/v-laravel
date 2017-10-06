@@ -107,8 +107,8 @@ class UserListController extends Controller
             ->firstOrFail();
         $list->accounts()
             ->detach($list->accounts()
-            ->where('steamid', $steamid)
-            ->firstOrFail());
+                ->where('steamid', $steamid)
+                ->firstOrFail());
 
         return redirect()->route('list/show', ['uuid' => $uuid]);
     }
