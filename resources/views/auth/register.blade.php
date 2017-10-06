@@ -65,9 +65,11 @@
                     </div>
                 </div>
             </form>
-        </d iv>
+        </div>
     </div>
 </div>
 @endsection
 
+@section('scripts')
 {!! Captcha::script() !!}
+@endsection

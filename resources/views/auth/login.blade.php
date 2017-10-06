@@ -76,4 +76,6 @@
 </div>
 @endsection
 
+@section('scripts')
 {!! Captcha::script() !!}
+@endsection
