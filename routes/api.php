@@ -148,6 +148,7 @@ Route::post('/list/delete', function (Request $request) {
         ]);
     }
 
+    $list->subscribers()->delete();
     $list->delete();
 
     return response()->json([
