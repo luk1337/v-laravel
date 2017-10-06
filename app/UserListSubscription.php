@@ -19,7 +19,7 @@ class UserListSubscription extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function lists() {
-        return $this->belongsToMany('App\UserList');
+    public function userList() {
+        return $this->belongsTo('App\UserList');
     }
 }
