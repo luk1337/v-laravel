@@ -1,14 +1,15 @@
 @extends('layouts.app', ['title' => 'My subscribed lists'])
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h2 style="margin-top: 0">My subscribed lists</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 style="margin-top: 0">My subscribed lists</h2>
 
-                @if ($lists->isEmpty())
-                    <b>Sowwy, it looks like you didn't subscribe to any list.</b>
-                @else
+            @if ($lists->isEmpty())
+                <b>Sowwy, it looks like you didn't subscribe to any list.</b>
+            @else
+                <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -35,8 +36,9 @@
                         @endforeach
                         </tbody>
                     </table>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </div>
+</div>
 @endsection
