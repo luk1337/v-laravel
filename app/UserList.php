@@ -31,7 +31,8 @@ class UserList extends Model
     }
 
     public function accounts() {
-        return $this->belongsToMany('App\UserListAccount');
+        return $this->belongsToMany('App\UserListAccount')
+            ->withTimestamps();
     }
 
     public function subscribers() {

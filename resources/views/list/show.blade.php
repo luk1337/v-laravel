@@ -34,6 +34,7 @@
                         <th>Game bans</th>
                         <th>VAC bans</th>
                         <th>Last ban date</th>
+                        <th>Added at</th>
                         @if (Auth::check() && $list->user_id == Auth::user()->id)
                             <th>Actions</th>
                         @endif
@@ -48,6 +49,7 @@
                             <td style="vertical-align: middle{{$account->number_of_game_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_game_bans }}</td>
                             <td style="vertical-align: middle{{$account->number_of_vac_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_vac_bans }}</td>
                             <td style="vertical-align: middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
+                            <td style="vertical-align: middle">{{ $account->pivot->created_at ? $account->pivot->created_at->format('Y-m-d') : '—' }}</td>
                             @if (Auth::check() && $list->user_id == Auth::user()->id)
                                 <td style="vertical-align: middle">
                                     <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">Delete</a>
