@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-warning">Yes</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
                         <a href="{{ url()->previous() }}" class="btn btn-default">No</a>
                     </div>
                 </div>

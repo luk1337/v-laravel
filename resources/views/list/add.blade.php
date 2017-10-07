@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6">
-                            <button type="submit" class="btn btn-default">Add to list</button>
+                            <button type="submit" class="btn btn-primary">Add to list</button>
                         </div>
                     </div>
                 </form>

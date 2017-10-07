@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-4 col-sm-6">
-                        <button type="submit" class="btn btn-default">Save list</button>
+                        <button type="submit" class="btn btn-primary">Save list</button>
                     </div>
                 </div>
             </form>
