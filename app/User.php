@@ -27,6 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) {
+            $user->lists()->delete();
+            $user->subscriptions()->delete();
+        });
+    }
+
     public function lists() {
         return $this->hasMany('App\UserList');
     }
