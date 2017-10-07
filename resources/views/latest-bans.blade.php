@@ -4,10 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="pull-left">
-                <h2 style="margin-top: 0">Latest bans</h2>
-            </div>
-            <div class="clearfix"></div>
+            <h2 style="margin-top: 0">Latest bans</h2>
 
             @if ($accounts->isEmpty())
                 <b>Sowwy, it looks like no one got banned recently.</b>
