@@ -10,12 +10,12 @@
             @auth
                 <div class="pull-right">
                     @if ($list->user_id == Auth::user()->id)
-                        <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-default">Add account</a>
+                        <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-default" style="margin-bottom: 11px">Add account</a>
                     @else
                         @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
-                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-success">Subscribe</a>
+                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-success" style="margin-bottom: 11px">Subscribe</a>
                         @else
-                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-danger">Unsubscribe</a>
+                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-danger" style="margin-bottom: 11px">Unsubscribe</a>
                         @endif
                     @endif
                 </div>
