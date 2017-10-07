@@ -3,6 +3,7 @@
 use App\SteamApiClient;
 use App\User;
 use App\UserList;
+use App\UserListAccount;
 use App\UserListSubscription;
 use Illuminate\Http\Request;
 use Webpatser\Uuid\Uuid;
@@ -451,6 +452,37 @@ Route::post('/list/show', function (Request $request) {
     $accounts = $list->accounts()
         ->orderBy('user_list_account_id', 'desc')
         ->get(['steamid', 'avatar', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date', 'user_list_accounts.created_at']);
+
+    return response()->json([
+        'status' => 'success',
+        'accounts' => $accounts,
+    ]);
+});
+
+Route::post('/latest-bans', function (Request $request) {
+    if (is_null($request->api_key)) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Missing API key.',
+        ]);
+    }
+
+    $user = User::where('api_key', $request->api_key)
+        ->get()
+        ->first();
+
+    if (is_null($user)) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Missing API key.',
+        ]);
+    }
+
+    $accounts = UserListAccount::where(function ($query) {
+        $query->where('number_of_vac_bans', '>', 0)
+            ->orWhere('number_of_game_bans', '>', 0);
+    })->orderBy('last_ban_date', 'desc')
+        ->get(['steamid', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date']);
 
     return response()->json([
         'status' => 'success',
