@@ -21,6 +21,7 @@ class UserList extends Model
         parent::boot();
 
         static::deleting(function($list) {
+            $list->accounts()->detach();
             $list->subscribers()->delete();
         });
     }
