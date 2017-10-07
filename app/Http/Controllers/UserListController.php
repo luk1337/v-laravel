@@ -83,7 +83,6 @@ class UserListController extends Controller
     {
         $list = UserList::where('user_id', Auth::User()->id)
             ->where('uuid', $uuid)->firstOrFail();
-        $list->subscribers()->delete();
         $list->delete();
 
         return redirect('/list/my');

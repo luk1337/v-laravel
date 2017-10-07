@@ -17,6 +17,14 @@ class UserList extends Model
         "private" => "Private",
     ];
 
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($list) {
+            $list->subscribers()->delete();
+        });
+    }
+
     public function user() {
         return $this->belongsTo('App\User');
     }
