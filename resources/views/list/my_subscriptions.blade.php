@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 style="margin-top: 0">My subscribed lists</h2>
+            <h2 class="page-title">My subscribed lists</h2>
 
             @if ($lists->isEmpty())
                 <b>Sowwy, it looks like you didn't subscribe to any list.</b>

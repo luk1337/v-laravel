@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 style="margin-top: 0">Change password</h2>
+            <h2 class="page-title">Change password</h2>
 
             <form class="form-horizontal" method="POST" action="{{ route('change-password') }}">
                 {{ csrf_field() }}

@@ -10,7 +10,7 @@
                 </div>
             @endif
 
-            <h2 style="margin-top: 0">Reset password</h2>
+            <h2 class="page-title">Reset password</h2>
 
             <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
                 {{ csrf_field() }}

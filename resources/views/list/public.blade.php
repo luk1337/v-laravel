@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 style="margin-top: 0">Public lists</h2>
+                <h2 class="page-title">Public lists</h2>
 
                 @if ($lists->isEmpty())
                     <b>Sowwy, it looks like there are no public lists.</b>

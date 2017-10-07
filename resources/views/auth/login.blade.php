@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 style="margin-top: 0">Login</h2>
+            <h2 class="page-title">Login</h2>
 
             <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}

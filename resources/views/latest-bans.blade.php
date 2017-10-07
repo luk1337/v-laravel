@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 style="margin-top: 0">Latest bans</h2>
+            <h2 class="page-title">Latest bans</h2>
 
             @if ($accounts->isEmpty())
                 <b>Sowwy, it looks like no one got banned recently.</b>
@@ -24,12 +24,12 @@
                         <tbody>
                         @foreach ($accounts as $account)
                             <tr>
-                                <th style="vertical-align: middle" scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
-                                <td style="vertical-align: middle"><img src="{{ $account->avatar }}" /></td>
-                                <td style="vertical-align: middle"><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
-                                <td style="vertical-align: middle{{$account->number_of_game_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_game_bans }}</td>
-                                <td style="vertical-align: middle{{$account->number_of_vac_bans > 0 ? '; color: red' : ''}}">{{ $account->number_of_vac_bans }}</td>
-                                <td style="vertical-align: middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
+                                <th class="valign-middle" scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
+                                <td class="valign-middle"><img src="{{ $account->avatar }}" /></td>
+                                <td class="valign-middle"><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
+                                <td class="valign-middle"{{$account->number_of_game_bans > 0 ? ' style="color: red"' : ''}}>{{ $account->number_of_game_bans }}</td>
+                                <td class="valign-middle"{{$account->number_of_vac_bans > 0 ? ' style="color: red"' : ''}}>{{ $account->number_of_vac_bans }}</td>
+                                <td class="valign-middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
                             </tr>
                         @endforeach
                         </tbody>
