@@ -1,9 +1,9 @@
 @component('mail::message')
-# Hello!
-
-You are receiving this email because someone just got banned from list 〜 {{ $list->name }}!
-
 @component('mail::html')
+<h1>Hello!</h1>
+
+<p>You are receiving this email because someone just got banned from list 〜 {{ $list->name }}!</p>
+
 <div class="table">
     <table>
         <thead>
