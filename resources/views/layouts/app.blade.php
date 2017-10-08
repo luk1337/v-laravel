@@ -87,6 +87,17 @@
         </nav>
 
         @yield('content')
+
+        <footer>
+            <div class="container">
+                <div class="pull-left">
+                    <a href="https://github.com/luk1337/v-laravel">Source code</a>
+                </div>
+                <div class="pull-right">
+                    Copyright &copy; {{ Date("Y") }}, <a href="mailto:priv.luk@gmail.com">LuK1337</a>.
+                </div>
+            </div>
+        </footer>
     </div>
 
     <!-- Scripts -->
