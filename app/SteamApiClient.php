@@ -9,6 +9,11 @@ class SteamApiClient
     private $apiKey;
     private $apiClient;
 
+    private $steamIdIdentifiers = [
+        'individual' => 0x0110000100000000,
+        'clan' => 0x0170000000000000,
+    ];
+
     function __construct() {
         $this->apiKey = env('STEAM_API_KEY', '');
         $this->apiClient = new Client([
@@ -67,15 +72,15 @@ class SteamApiClient
         }
 
         if (preg_match('/^(?:http(?:s)?:\/\/)?steamcommunity.com\/profiles\/\[U:1:(\d+)\](?:\/)?$/', $str, $matches)) {
-            return $matches[1] + 0x0110000100000000;
+            return $matches[1] + $this->steamIdIdentifiers['individual'];
         }
 
         if (preg_match('/^STEAM_(\d+):(\d+):(\d+)$/', $str, $matches)) {
-            return $matches[3] * 2 + 0x0110000100000000 + $matches[2];
+            return $matches[3] * 2 + $this->steamIdIdentifiers['individual'] + $matches[2];
         }
 
         if (preg_match('/^\[U:1:(\d+)\]$/', $str, $matches)) {
-            return $matches[1] + 0x0110000100000000;
+            return $matches[1] + $this->steamIdIdentifiers['individual'];
         }
 
         if (preg_match('/^(\w+)$/', $str, $matches)) {
