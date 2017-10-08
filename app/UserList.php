@@ -12,9 +12,9 @@ class UserList extends Model
     ];
 
     static $listPrivacyTypes = [
-        "public" => "Public",
-        "unlisted" => "Unlisted",
-        "private" => "Private",
+        'public' => 'Public',
+        'unlisted' => 'Unlisted',
+        'private' => 'Private',
     ];
 
     protected static function boot() {
