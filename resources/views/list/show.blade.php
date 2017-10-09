@@ -50,7 +50,7 @@
                                 <td class="valign-middle{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                 <td class="valign-middle{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                 <td class="valign-middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
-                                <td class="valign-middle">{{ $account->pivot->created_at ? $account->pivot->created_at->format('Y-m-d') : '—' }}</td>
+                                <td class="valign-middle" title="{{ $account->pivot->created_at }}">{{ $account->pivot->created_at ? $account->pivot->created_at->format('Y-m-d') : '—' }}</td>
                                 @if (Auth::check() && $list->user_id == Auth::user()->id)
                                     <td class="valign-middle">
                                         <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">Delete</a>
