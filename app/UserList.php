@@ -39,6 +39,12 @@ class UserList extends Model
         return $this->hasMany('App\UserListSubscription');
     }
 
+    public function getBannedAccounts() {
+        return $this->accounts->filter(function($account) {
+            return $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0;
+        });
+    }
+
     public function addToList($steamIds) {
         $steamApiClient = new SteamApiClient;
 
