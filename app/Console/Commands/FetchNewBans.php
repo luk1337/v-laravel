@@ -83,7 +83,6 @@ class FetchNewBans extends Command
                     $account->number_of_vac_bans = $ban['NumberOfVACBans'];
                     $account->number_of_game_bans = $ban['NumberOfGameBans'];
                     $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);
-                    $account->last_ban_updated_at = Carbon::now();
 
                     foreach ($account->lists()->get() as $list) {
                         if (!array_key_exists($list->id, $updatedLists)) {

@@ -29,7 +29,11 @@
                                 <td class="valign-middle"><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
                                 <td class="valign-middle{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                 <td class="valign-middle{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
-                                <td class="valign-middle">{{ $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0 ? $account->last_ban_date : '—' }}</td>
+                                @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
+                                    <td class="valign-middle" title="{{ $account->getLastBanTime() }}">{{ $account->getLastBanTime()->format('Y-m-d') }}</td>
+                                @else
+                                    <td class="valign-middle">—</td>
+                                @endif
                             </tr>
                         @endforeach
                         </tbody>
