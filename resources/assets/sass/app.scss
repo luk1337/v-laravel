@@ -43,3 +43,11 @@ td.valign-middle,
 th.valign-middle {
   vertical-align: middle !important;
 }
+
+span.underline-dotted {
+  border-bottom: 1px dashed #636b6f;
+}
+
+span.underline-dotted:hover {
+  border-bottom: none;
+}
