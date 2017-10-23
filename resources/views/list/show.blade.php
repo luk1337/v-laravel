@@ -50,11 +50,15 @@
                                 <td class="valign-middle{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                 <td class="valign-middle{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                 @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
-                                    <td class="valign-middle" title="{{ $account->getLastBanTime() }}">{{ $account->getLastBanTime()->format('Y-m-d') }}</td>
+                                    <td class="valign-middle"><span title="{{ $account->getLastBanTime() }}" data-toggle="tooltip" data-placement="bottom">{{ $account->getLastBanTime()->format('Y-m-d') }}</span></td>
                                 @else
                                     <td class="valign-middle">—</td>
                                 @endif
-                                <td class="valign-middle" title="{{ $account->pivot->created_at }}">{{ $account->pivot->created_at ? $account->pivot->created_at->format('Y-m-d') : '—' }}</td>
+                                @if ($account->pivot->created_at)
+                                    <td class="valign-middle"><span title="{{ $account->pivot->created_at }}" data-toggle="tooltip" data-placement="bottom">{{ $account->pivot->created_at->format('Y-m-d') }}</span></td>
+                                @else
+                                    <td class="valign-middle">—</td>
+                                @endif
                                 @if (Auth::check() && $list->user_id == Auth::user()->id)
                                     <td class="valign-middle">
                                         <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">Delete</a>
