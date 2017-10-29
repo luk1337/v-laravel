@@ -27,7 +27,11 @@
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a></td>
                                 <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
-                                <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）</td>
+                                @if (!$list->getBannedAccounts()->isEmpty())
+                                    <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）</td>
+                                @else
+                                    <td>{{ $list->accounts->count() }}</td>
+                                @endif
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                 <td>
                                     <a href="{{ route('list/edit', ['uuid' => $list->uuid]) }}" class="btn btn-info btn-xs">Edit</a>
