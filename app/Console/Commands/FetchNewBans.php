@@ -54,7 +54,7 @@ class FetchNewBans extends Command
                 $summary = array_filter(
                     $summaries,
                     function ($e) use($account) {
-                        return $e['steamid'] == $account->steamid;
+                        return array_key_exists('steamid', $e) && $e['steamid'] == $account->steamid;
                     }
                 );
 
@@ -65,7 +65,7 @@ class FetchNewBans extends Command
                 $ban = array_filter(
                     $bans,
                     function ($e) use($account) {
-                        return $e['SteamId'] == $account->steamid;
+                        return array_key_exists('SteamId', $e) && $e['SteamId'] == $account->steamid;
                     }
                 );
 
