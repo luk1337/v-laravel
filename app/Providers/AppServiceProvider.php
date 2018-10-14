@@ -19,9 +19,24 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::directive('escape_markdown', function ($expression) {
             return "<?php
-                \$specialCharacters = ['\\\\', '`', '*', '_', '{', '}', '[', ']', '(', ')', '#', '+', '-', '!', '|'];
-                \$specialCharactersEscaped = ['\\\\\\\\', '\\\\`', '\\\\*', '\\\\_', '\\\\{', '\\\\}', '\\\\[', '\\\\]', '\\\\(', '\\\\)', '\\\\#', '\\\\+', '\\\\-', '\\\\!', '\\\\|'];
-                echo e(str_replace(\$specialCharacters, \$specialCharactersEscaped, {$expression}));
+                \$specialCharacters = [
+                    '\\\\' => '\\\\\\\\',
+                    '`' => '\\\\`',
+                    '*' => '\\\\*',
+                    '_' => '\\\\_',
+                    '#' => '\\\\#',
+                    '+' => '\\\\+',
+                    '-' => '\\\\-',
+                    '!' => '\\\\!',
+                    '|' => '\\\\|',
+                    '{' => '\\\\{',
+                    '}' => '\\\\}',
+                    '[' => '&#91;',
+                    ']' => '&#93;',
+                    '(' => '\\\\(',
+                    ')' => '\\\\)',
+                ];
+                echo str_replace(array_keys(\$specialCharacters), array_values(\$specialCharacters), {$expression});
                 ?>";
         });
     }
