@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-md-12">
             @if (session('status'))
-                <div class="alert alert-success mt-3">
+                <div class="alert alert-success">
                     {{ session('status') }}
                 </div>
             @endif
 
-            <h2 class="mt-3">Reset password</h2>
+            <h2>{{ __('Reset password') }}</h2>
 
             <div class="row justify-content-center align-items-center">
                 <div class="col col-md-6 col-xl-4">
@@ -18,7 +18,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="email" class="control-label">E-Mail Address</label>
+                            <label for="email" class="control-label">{{ __('E-Mail Address') }}</label>
                             <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))

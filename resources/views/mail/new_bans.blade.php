@@ -1,10 +1,10 @@
 @component('mail::message')
-# Hello!
+# @lang('Hello!')
 
-You are receiving this email because someone just got banned from list 〜 @escape_markdown($list->name)!
+@lang('You are receiving this email because someone just got banned from list') 〜 @escape_markdown($list->name)
 
 @component('mail::table')
-| Avatar                          | Name                                                                                            | Game bans                           | VAC bans                           |
+| @lang('Avatar')                 | @lang('Name')                                                                                   | @lang('Game bans')                  | @lang('VAC bans')                  |
 |:-------------------------------:| ----------------------------------------------------------------------------------------------- |:-----------------------------------:|:----------------------------------:|
 @foreach ($accounts as $account)
 | ![avatar]({{$account->avatar}}) | [@escape_markdown($account->name)](https://steamcommunity.com/profiles/{{ $account->steamid }}) | {{ $account->number_of_game_bans }} | {{ $account->number_of_vac_bans }}
