@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="page-title">Home</h2>
+            <h2 class="mt-3">Home</h2>
 
             <p>Welcome to V.</p>
 

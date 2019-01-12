@@ -4,18 +4,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="pull-left">
-                <h2 class="page-title">Showing list 〜 {{ $list->name }}</h2>
+            <div class="float-left">
+                <h2 class="mt-3">Showing list 〜 {{ $list->name }}</h2>
             </div>
             @auth
-                <div class="pull-right">
+                <div class="float-right">
                     @if ($list->user_id == Auth::user()->id)
-                        <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-default btn-page">Add account</a>
+                        <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-dark btn-page mt-3">Add account</a>
                     @else
                         @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
-                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-success btn-page">Subscribe</a>
+                            <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-success btn-page mt-3">Subscribe</a>
                         @else
-                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-danger btn-page">Unsubscribe</a>
+                            <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="btn btn-danger btn-page mt-3">Unsubscribe</a>
                         @endif
                     @endif
                 </div>

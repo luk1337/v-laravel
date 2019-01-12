@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="page-title">Latest bans</h2>
+            <h2 class="mt-3">Latest bans</h2>
 
             @if ($accounts->isEmpty())
                 <b>Sowwy, it looks like no one got banned recently.</b>
