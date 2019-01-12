@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="mt-3">
-            <h2 class="page-title">Change password</h2>
+        <div class="col-md-12">
+            <h2 class="mt-3">Change password</h2>
 
             <div class="row justify-content-center align-items-center">
                 <div class="col col-md-6 col-xl-4">
