@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -30,7 +31,7 @@ class User extends Authenticatable
     protected static function boot() {
         parent::boot();
 
-        static::deleting(function($user) {
+        static::deleting(function ($user) {
             $user->lists()->delete();
             $user->subscriptions()->delete();
         });
