@@ -18,26 +18,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Blade::directive('escape_markdown', function ($expression) {
-            return "<?php
-                \$specialCharacters = [
-                    '\\\\' => '\\\\\\\\',
-                    '`' => '\\\\`',
-                    '*' => '\\\\*',
-                    '_' => '\\\\_',
-                    '#' => '\\\\#',
-                    '+' => '\\\\+',
-                    '-' => '\\\\-',
-                    '!' => '\\\\!',
-                    '|' => '\\\\|',
-                    '{' => '\\\\{',
-                    '}' => '\\\\}',
-                    '[' => '&#91;',
-                    ']' => '&#93;',
-                    '(' => '\\\\(',
-                    ')' => '\\\\)',
-                ];
-                echo str_replace(array_keys(\$specialCharacters), array_values(\$specialCharacters), {$expression});
-                ?>";
+            return "<?php echo App\Helpers\MarkdownHelper::markdownEscape({$expression}); ?>";
         });
     }
 

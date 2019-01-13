@@ -1,7 +1,7 @@
 @component('mail::message')
 # @lang('Hello!')
 
-@lang('You are receiving this email because someone just got banned from list') 〜 @escape_markdown($list->name)
+@lang('You are receiving this email because someone just got banned from list 〜 :name', ['name' => App\Helpers\MarkdownHelper::markdownEscape($list->name)])
 
 @component('mail::table')
 | @lang('Avatar')                 | @lang('Name')                                                                                   | @lang('Game bans')                  | @lang('VAC bans')                  |
