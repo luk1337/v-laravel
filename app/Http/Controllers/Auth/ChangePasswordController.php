@@ -32,8 +32,8 @@ class ChangePasswordController extends Controller
         });
 
         $this->validate($request, [
-            'current_password' => 'required|user_password',
-            'password' => 'required|string|min:6|confirmed',
+            'current_password' => ['required', 'user_password'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
 
         $user = Auth::user();

@@ -31,7 +31,7 @@ class UserListController extends Controller
     public function postAdd(Request $request, $uuid)
     {
         $this->validate($request, [
-            'steamids' => 'required',
+            'steamids' => ['required'],
         ]);
 
         $steamApiClient = new SteamApiClient;
@@ -59,8 +59,8 @@ class UserListController extends Controller
     public function postCreate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:64',
-            'privacy' => 'required|in:' . implode(',', array_keys(UserList::$listPrivacyTypes))
+            'name' => ['required', 'max:64'],
+            'privacy' => ['required', 'in:' . implode(',', array_keys(UserList::$listPrivacyTypes))]
         ]);
 
         $list = new UserList;
@@ -122,8 +122,8 @@ class UserListController extends Controller
     public function postEdit(Request $request, $uuid)
     {
         $this->validate($request, [
-            'name' => 'required|max:64',
-            'privacy' => 'required|in:' . implode(',', array_keys(UserList::$listPrivacyTypes))
+            'name' => ['required', 'max:64'],
+            'privacy' => ['required', 'in:' . implode(',', array_keys(UserList::$listPrivacyTypes))]
         ]);
 
         $list = UserList::where('user_id', Auth::User()->id)

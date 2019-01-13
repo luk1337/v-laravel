@@ -38,8 +38,8 @@ class LoginController extends Controller
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->username() => 'required|string',
-            'password' => 'required|string',
+            $this->username() => ['required', 'string'],
+            'password' => ['required', 'string'],
             'g-recaptcha-response' => ['required', new CaptchaRule],
         ]);
     }

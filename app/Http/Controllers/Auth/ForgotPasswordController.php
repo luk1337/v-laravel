@@ -41,7 +41,7 @@ class ForgotPasswordController extends Controller
     protected function validateEmail(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email',
+            'email' => ['required', 'email'],
             'g-recaptcha-response' => ['required', new CaptchaRule],
         ]);
     }
