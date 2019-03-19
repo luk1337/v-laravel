@@ -29,10 +29,10 @@
                         </div>
 
                         <div class="form-group">
-                            {!! no_captcha()->input() !!}
+                            {!! no_captcha()->display() !!}
 
                             @if ($errors->has('g-recaptcha-response'))
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" role="alert" style="display: block">
                                     <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                                 </span>
                             @endif
@@ -52,14 +52,5 @@
 @endsection
 
 @section('scripts')
-    {!! no_captcha()->script() !!}
-    {!! no_captcha()->getApiScript() !!}
-
-    <script>
-        grecaptcha.ready(function() {
-            window.noCaptcha.render('login', function (token) {
-                document.querySelector('#g-recaptcha-response').value = token;
-            });
-        });
-    </script>
+{!! no_captcha()->script() !!}
 @endsection
