@@ -36,8 +36,10 @@
                                     @endif
                                     <td class="valign-middle">{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                     <td class="valign-middle">
-                                        <a href="{{ route('list/edit', ['uuid' => $list->uuid]) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
-                                        <a href="{{ route('list/delete', ['uuid' => $list->uuid]) }}" class="btn btn-danger btn-xs">{{ __('Delete') }}</a>
+                                        <div class="btn-group" role="group">
+                                            <a href="{{ route('list/edit', ['uuid' => $list->uuid]) }}" class="btn btn-info btn-xs">{{ __('Edit') }}</a>
+                                            <a href="{{ route('list/delete', ['uuid' => $list->uuid]) }}" class="btn btn-danger btn-xs">{{ __('Delete') }}</a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
