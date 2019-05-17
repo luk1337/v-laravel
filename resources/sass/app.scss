@@ -34,8 +34,8 @@ a.btn.btn-page {
   margin-bottom: 11px;
 }
 
-td.valign-middle,
-th.valign-middle {
+tr.valign-middle > td,
+tr.valign-middle > th {
   vertical-align: middle !important;
 }
 

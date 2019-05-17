@@ -23,16 +23,16 @@
                         </thead>
                         <tbody>
                             @foreach ($accounts as $account)
-                                <tr>
-                                    <th class="valign-middle" scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
-                                    <td class="valign-middle"><img src="{{ $account->avatar }}" /></td>
-                                    <td class="valign-middle"><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
-                                    <td class="valign-middle{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
-                                    <td class="valign-middle{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
+                                <tr class="valign-middle">
+                                    <th scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
+                                    <td><img src="{{ $account->avatar }}" /></td>
+                                    <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
+                                    <td class="{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
+                                    <td class="{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                     @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
-                                        <td class="valign-middle"><span class="underline-dotted" title="{{ $account->getLastBanTime() }}" data-toggle="tooltip" data-placement="bottom">{{ $account->getLastBanTime()->format('Y-m-d') }}</span></td>
+                                        <td><span class="underline-dotted" title="{{ $account->getLastBanTime() }}" data-toggle="tooltip" data-placement="bottom">{{ $account->getLastBanTime()->format('Y-m-d') }}</span></td>
                                     @else
-                                        <td class="valign-middle">—</td>
+                                        <td>—</td>
                                     @endif
                                 </tr>
                             @endforeach

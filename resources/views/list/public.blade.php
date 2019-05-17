@@ -25,17 +25,17 @@
                         </thead>
                         <tbody>
                             @foreach ($lists as $list)
-                                <tr>
-                                    <th class="valign-middle" scope="row">{{ $loop->iteration }}</th>
-                                    <td class="valign-middle"><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a></td>
-                                    <td class="valign-middle">{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
+                                <tr class="valign-middle">
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a></td>
+                                    <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
                                     @if (!$list->getBannedAccounts()->isEmpty())
-                                        <td class="valign-middle">{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）</td>
+                                        <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）</td>
                                     @else
-                                        <td class="valign-middle">{{ $list->accounts->count() }}</td>
+                                        <td>{{ $list->accounts->count() }}</td>
                                     @endif
-                                    <td class="valign-middle">{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
-                                    <td class="valign-middle">
+                                    <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
+                                    <td>
                                         @if (Auth::Check() && $list->user_id != Auth::User()->id)
                                             <div class="btn-group btn-group-sm" role="group">
                                                 @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
