@@ -37,7 +37,7 @@
                                     <td class="valign-middle">{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                     <td class="valign-middle">
                                         @if (Auth::Check() && $list->user_id != Auth::User()->id)
-                                            <div class="btn-group" role="group">
+                                            <div class="btn-group btn-group-sm" role="group">
                                                 @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
                                                     <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="btn btn-xs btn-success">{{ __('Subscribe') }}</a>
                                                 @else
