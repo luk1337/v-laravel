@@ -61,7 +61,9 @@
                                     @endif
                                     @if (Auth::check() && $list->user_id == Auth::user()->id)
                                         <td class="valign-middle">
-                                            <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">{{ __('Delete') }}</a>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">{{ __('Delete') }}</a>
+                                            </div>
                                         </td>
                                     @endif
                                 </tr>
