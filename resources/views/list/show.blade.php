@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="float-left">
                 <h2>{{ __('Showing list 〜 :name', ['name' => $list->name]) }}</h2>

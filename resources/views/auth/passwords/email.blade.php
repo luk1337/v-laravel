@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-12">
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -15,32 +15,32 @@
             <div class="row justify-content-center align-items-center">
                 <div class="col col-md-6 col-xl-4">
                     <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
-                        {{ csrf_field() }}
+                        @csrf
 
                         <div class="form-group">
-                            <label for="email" class="control-label">{{ __('E-Mail Address') }}</label>
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                            <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                            @if ($errors->has('email'))
+                            @error('email')
                                 <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $errors->first('email') }}</strong>
+                                    <strong>{{ $message }}</strong>
                                 </span>
-                            @endif
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             {!! no_captcha()->display() !!}
 
-                            @if ($errors->has('g-recaptcha-response'))
+                            @error('g-recaptcha-response')
                                 <span class="invalid-feedback" role="alert" style="display: block">
-                                    <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+                                    <strong>{{ $message }}</strong>
                                 </span>
-                            @endif
+                            @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group mb-0">
                             <button type="submit" class="btn btn-primary">
-                                Send Password Reset Link
+                                {{ __('Send Password Reset Link') }}
                             </button>
                         </div>
                     </form>
