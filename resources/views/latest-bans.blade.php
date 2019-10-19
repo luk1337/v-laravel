@@ -25,7 +25,7 @@
                             @foreach ($accounts as $account)
                                 <tr class="valign-middle">
                                     <th scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
-                                    <td><img src="{{ $account->avatar }}" /></td>
+                                    <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}"><img src="{{ $account->avatar }}" /></a></td>
                                     <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
                                     <td class="{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                     <td class="{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>

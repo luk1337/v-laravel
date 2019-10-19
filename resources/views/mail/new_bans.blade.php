@@ -7,7 +7,7 @@
 | @lang('Avatar')                 | @lang('Name')                                                                                   | @lang('Game bans')                  | @lang('VAC bans')                  |
 |:-------------------------------:| ----------------------------------------------------------------------------------------------- |:-----------------------------------:|:----------------------------------:|
 @foreach ($accounts as $account)
-| ![avatar]({{$account->avatar}}) | [@escape_markdown($account->name)](https://steamcommunity.com/profiles/{{ $account->steamid }}) | {{ $account->number_of_game_bans }} | {{ $account->number_of_vac_bans }}
+| [![avatar]({{$account->avatar}})](https://steamcommunity.com/profiles/{{ $account->steamid }}) | [@escape_markdown($account->name)](https://steamcommunity.com/profiles/{{ $account->steamid }}) | {{ $account->number_of_game_bans }} | {{ $account->number_of_vac_bans }}
 @endforeach
 @endcomponent
 @endcomponent
