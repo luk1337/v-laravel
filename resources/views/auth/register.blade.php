@@ -13,7 +13,7 @@
 
                         <div class="form-group">
                             <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="password" required autocomplete="email">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
