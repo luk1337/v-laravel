@@ -13,6 +13,10 @@
 
 Route::get('/', 'HomeController@getIndex')->name('home');
 
+Route::get('/api-key', 'ApiKeyController@getIndex')->name('api-key');
+Route::post('/api-key/reset', 'ApiKeyController@postReset')->name('api-key/reset');
+Route::post('/api-key/regen', 'ApiKeyController@postRegen')->name('api-key/regen');
+
 Route::get('/change-password', 'Auth\ChangePasswordController@getIndex')->name('change-password');
 Route::post('/change-password', 'Auth\ChangePasswordController@postIndex')->name('change-password');
 

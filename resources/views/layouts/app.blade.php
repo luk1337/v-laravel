@@ -72,6 +72,9 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('api-key') }}">
+                                            {{ __('API key') }}
+                                        </a>
                                         <a class="dropdown-item" href="{{ route('change-password') }}">
                                             {{ __('Change password') }}
                                         </a>
