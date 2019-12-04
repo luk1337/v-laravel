@@ -51,23 +51,17 @@ class FetchNewBans extends Command
             $bans = $steamApiClient->getPlayerBans($accounts->implode('steamid', ','));
 
             foreach ($accounts as $account) {
-                $summary = array_filter(
-                    $summaries,
-                    function ($e) use($account) {
-                        return array_key_exists('steamid', $e) && $e['steamid'] == $account->steamid;
-                    }
-                );
+                $summary = array_filter($summaries, function ($e) use ($account) {
+                    return array_key_exists('steamid', $e) && $e['steamid'] == $account->steamid;
+                });
 
                 if (empty($summary)) {
                     continue;
                 }
 
-                $ban = array_filter(
-                    $bans,
-                    function ($e) use($account) {
-                        return array_key_exists('SteamId', $e) && $e['SteamId'] == $account->steamid;
-                    }
-                );
+                $ban = array_filter($bans, function ($e) use ($account) {
+                    return array_key_exists('SteamId', $e) && $e['SteamId'] == $account->steamid;
+                });
 
                 if (empty($ban)) {
                     continue;
