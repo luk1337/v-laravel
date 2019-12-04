@@ -20,24 +20,6 @@ use Webpatser\Uuid\Uuid;
 */
 
 Route::post('/list/add', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
     if (!is_array($request->steamids)) {
         return response()->json([
             'status' => 'error',
@@ -45,9 +27,8 @@ Route::post('/list/add', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)
-        ->where('uuid', $request->uuid)
-        ->first();
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = $user->lists()->where('uuid', $request->uuid)->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -72,27 +53,9 @@ Route::post('/list/add', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/create', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
     if (empty($request->name) || strlen($request->name) > 64) {
         return response()->json([
             'status' => 'error',
@@ -107,6 +70,8 @@ Route::post('/list/create', function (Request $request) {
         ]);
     }
 
+    $user = User::where('api_key', $request->api_key)->first();
+
     $list = new UserList;
     $list->uuid = Uuid::generate()->string;
     $list->name = $request->name;
@@ -115,32 +80,13 @@ Route::post('/list/create', function (Request $request) {
     $list->saveOrFail();
 
     return response()->json([
-        'status' => 'success'
+        'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/delete', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $list = UserList::where('user_id', $user->id)
-        ->where('uuid', $request->uuid)
-        ->first();
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = $user->lists()->where('uuid', $request->uuid)->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -154,27 +100,9 @@ Route::post('/list/delete', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/delete/account', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
     if (empty($request->steamid)) {
         return response()->json([
             'status' => 'error',
@@ -182,9 +110,8 @@ Route::post('/list/delete/account', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)
-        ->where('uuid', $request->uuid)
-        ->first();
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = $user->lists()->where('uuid', $request->uuid)->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -201,27 +128,9 @@ Route::post('/list/delete/account', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/edit', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
     if (empty($request->name) || strlen($request->name) > 64) {
         return response()->json([
             'status' => 'error',
@@ -236,9 +145,8 @@ Route::post('/list/edit', function (Request $request) {
         ]);
     }
 
-    $list = UserList::where('user_id', $user->id)
-        ->where('uuid', $request->uuid)
-        ->first();
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = $user->lists()->where('uuid', $request->uuid)->first();
 
     if (is_null($list)) {
         return response()->json([
@@ -254,55 +162,21 @@ Route::post('/list/edit', function (Request $request) {
     return response()->json([
         'status' => 'success'
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/my', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $lists = UserList::where('user_id', $user->id)
+    $user = User::where('api_key', $request->api_key)->first();
+    $lists = $user->lists()->where('user_id', $user->id)
         ->get(['uuid', 'name', 'privacy', 'created_at']);
 
     return response()->json([
         'status' => 'success',
         'lists' => $lists,
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/my/subscriptions', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
+    $user = User::where('api_key', $request->api_key)->first();
     $lists = UserList::where('user_id', '!=', $user->id)
         ->whereIn('id', $user->subscriptions()->get(['user_list_id']))
         ->whereIn('privacy', ['public', 'unlisted'])
@@ -312,57 +186,21 @@ Route::post('/list/my/subscriptions', function (Request $request) {
         'status' => 'success',
         'lists' => $lists,
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/public', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $lists = UserList::where('privacy', 'public')
-        ->get();
+    $lists = UserList::where('privacy', 'public')->get();
 
     return response()->json([
         'status' => 'success',
         'lists' => $lists,
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/subscribe', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $list = UserList::where('user_id', '!=', $user->id)
-        ->where('uuid', $request->uuid)
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = UserList::where('uuid', $request->uuid)
+        ->where('user_id', '!=', $user->id)
         ->whereIn('privacy', ['public', 'unlisted'])->first();
 
     if (is_null($list)) {
@@ -378,29 +216,12 @@ Route::post('/list/subscribe', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/unsubscribe', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $list = UserList::where('user_id', '!=', $user->id)
-        ->where('uuid', $request->uuid)
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = UserList::where('uuid', $request->uuid)
+        ->where('user_id', '!=', $user->id)
         ->whereIn('privacy', ['public', 'unlisted'])->first();
 
     if (is_null($list)) {
@@ -416,30 +237,15 @@ Route::post('/list/unsubscribe', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/list/show', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $list = UserList::where('user_id', $user->id)
-        ->where('uuid', $request->uuid)
-        ->whereIn('privacy', ['public', 'unlisted'])
+    $user = User::where('api_key', $request->api_key)->first();
+    $list = UserList::where('uuid', $request->uuid)
+        ->where(function ($query) use ($user) {
+            $query->where('user_id', $user->id)
+                ->orWhereIn('privacy', ['public', 'unlisted']);
+        })
         ->first();
 
     if (is_null($list)) {
@@ -457,27 +263,9 @@ Route::post('/list/show', function (Request $request) {
         'status' => 'success',
         'accounts' => $accounts,
     ]);
-});
+})->middleware('api.key');
 
 Route::post('/latest-bans', function (Request $request) {
-    if (is_null($request->api_key)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
-    $user = User::where('api_key', $request->api_key)
-        ->get()
-        ->first();
-
-    if (is_null($user)) {
-        return response()->json([
-            'status' => 'error',
-            'message' => 'Missing API key.',
-        ]);
-    }
-
     $accounts = UserListAccount::where(function ($query) {
         $query->where('number_of_vac_bans', '>', 0)
             ->orWhere('number_of_game_bans', '>', 0);
@@ -488,4 +276,4 @@ Route::post('/latest-bans', function (Request $request) {
         'status' => 'success',
         'accounts' => $accounts,
     ]);
-});
+})->middleware('api.key');
