@@ -13,7 +13,7 @@
 
                         <div class="form-group">
                             <label for="name" class="col-form-label">Steam IDs</label>
-                            <textarea rows="12" cols="205" id="steamids" class="form-control @error('steamids') is-invalid @enderror" name="steamids" placeholder="http://steamcommunity.com/id/luk_1337&#10;http://steamcommunity.com/profiles/76561198058211132&#10;http://steamcommunity.com/profiles/[U:1:97945404]&#10;luk_1337&#10;76561198058211132&#10;STEAM_0:0:48972702&#10;[U:1:97945404]" required autofocus>{{ old('steamids') ?: $list->steamids }}</textarea>
+                            <textarea rows="12" cols="205" id="steamids" class="form-control @error('steamids') is-invalid @enderror" name="steamids" placeholder="http://steamcommunity.com/id/luk1337&#10;http://steamcommunity.com/profiles/76561198058211132&#10;http://steamcommunity.com/profiles/[U:1:97945404]&#10;luk1337&#10;76561198058211132&#10;STEAM_0:0:48972702&#10;[U:1:97945404]" required autofocus>{{ old('steamids') ?: $list->steamids }}</textarea>
 
                             @error('steamids')
                                 <span class="invalid-feedback" role="alert">
