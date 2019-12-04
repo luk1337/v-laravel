@@ -54,7 +54,7 @@ class UserList extends Model
 
             foreach ($steamIds as $steamId) {
                 $summary = array_filter($summaries, function ($e) use ($steamId) {
-                    return $e['steamid'] == $steamId;
+                    return $e['steamid'] === $steamId;
                 });
 
                 if (empty($summary)) {
@@ -62,7 +62,7 @@ class UserList extends Model
                 }
 
                 $ban = array_filter($bans, function ($e) use ($steamId) {
-                    return $e['SteamId'] == $steamId;
+                    return $e['SteamId'] === $steamId;
                 });
 
                 if (empty($ban)) {

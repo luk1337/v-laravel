@@ -25,7 +25,7 @@
                             <label for="privacy" class="col-form-label">Privacy</label>
                             <select id="privacy" class="form-control @error('privacy') is-invalid @enderror" name="privacy" required>
                                 @foreach (App\UserList::$listPrivacyTypes as $key => $value)
-                                    <option value="{{ $key }}"{{old('privacy') == $key ? ' selected' : ''}}>{{ $value }}</option>
+                                    <option value="{{ $key }}"{{old('privacy') === $key ? ' selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
 

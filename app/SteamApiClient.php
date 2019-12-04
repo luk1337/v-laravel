@@ -66,7 +66,7 @@ class SteamApiClient
         if (preg_match('/^(?:http(?:s)?:\/\/)?steamcommunity.com\/id\/(\w+)(?:\/)?$/', $str, $matches)) {
             $response = $this->resolveVanityURL($matches[1]);
 
-            if ($response['success'] == 1) {
+            if ($response['success'] === 1) {
                 return $response['steamid'];
             }
         }
@@ -86,7 +86,7 @@ class SteamApiClient
         if (preg_match('/^(\w+)$/', $str, $matches)) {
             $response = $this->resolveVanityURL($matches[1]);
 
-            if ($response['success'] == 1) {
+            if ($response['success'] === 1) {
                 return $response['steamid'];
             }
         }

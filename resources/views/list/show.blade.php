@@ -9,7 +9,7 @@
             </div>
             @auth
                 <div class="float-right">
-                    @if ($list->user_id == Auth::id())
+                    @if ($list->user_id === Auth::id())
                         <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="btn btn-dark btn-page">{{ __('Add account') }}</a>
                     @else
                         @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
@@ -36,7 +36,7 @@
                                 <th>{{ __('VAC bans') }}</th>
                                 <th>{{ __('Last ban date') }}</th>
                                 <th>{{ __('Added at') }}</th>
-                                @if (Auth::check() && $list->user_id == Auth::id())
+                                @if (Auth::check() && $list->user_id === Auth::id())
                                     <th>{{ __('Actions') }}</th>
                                 @endif
                             </tr>
@@ -59,7 +59,7 @@
                                     @else
                                         <td>—</td>
                                     @endif
-                                    @if (Auth::check() && $list->user_id == Auth::id())
+                                    @if (Auth::check() && $list->user_id === Auth::id())
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="btn btn-danger btn-xs">{{ __('Delete') }}</a>
