@@ -53,23 +53,17 @@ class UserList extends Model
             $bans = $steamApiClient->getPlayerBans(implode(',', $steamIds));
 
             foreach ($steamIds as $steamId) {
-                $summary = array_filter(
-                    $summaries,
-                    function ($e) use($steamId) {
-                        return $e['steamid'] == $steamId;
-                    }
-                );
+                $summary = array_filter($summaries, function ($e) use ($steamId) {
+                    return $e['steamid'] == $steamId;
+                });
 
                 if (empty($summary)) {
                     continue;
                 }
 
-                $ban = array_filter(
-                    $bans,
-                    function ($e) use($steamId) {
-                        return $e['SteamId'] == $steamId;
-                    }
-                );
+                $ban = array_filter($bans, function ($e) use ($steamId) {
+                    return $e['SteamId'] == $steamId;
+                });
 
                 if (empty($ban)) {
                     continue;
