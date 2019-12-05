@@ -1,13 +1,35 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,600");
+// Bulma
+@import 'bulma';
 
-// Variables
-@import 'variables';
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+#content {
+    flex: 1;
+}
 
-html {
+footer {
+    height: 3.25rem;
+    line-height: 3.25rem;
+}
+
+tr.valign-middle > td,
+tr.valign-middle > th {
+    vertical-align: middle !important;
+}
+
+span.underline-dotted {
+    border-bottom: 1px dashed #636b6f;
+}
+
+span.underline-dotted:hover {
+    border-bottom: none;
+}
+
+/*html {
   position: relative;
   min-height: 100%;
 }
@@ -34,15 +56,4 @@ a.btn.btn-page {
   margin-bottom: 11px;
 }
 
-tr.valign-middle > td,
-tr.valign-middle > th {
-  vertical-align: middle !important;
-}
-
-span.underline-dotted {
-  border-bottom: 1px dashed #636b6f;
-}
-
-span.underline-dotted:hover {
-  border-bottom: none;
-}
+*/

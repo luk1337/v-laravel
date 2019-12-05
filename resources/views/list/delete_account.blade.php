@@ -1,28 +1,27 @@
-@extends('layouts.app', ['title' => __('Deleting account from list 〜 :name', ['name' => $list->name])])
+@extends('layouts.app', ['title' => __('Delete account from list 〜 :name', ['name' => $list->name])])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <h2>{{ __('Deleting account from list 〜 :name', ['name' => $list->name]) }}</h2>
+    <div class="container">
+        <h1 class="title">{{ __('Delete account from list') }}</h1>
+        <h2 class="subtitle">{{ $list->name }}</h2>
 
-            <form class="form-horizontal" method="post">
-                @csrf
+        <div class="columns is-mobile is-centered">
+            <div class="column is-one-third">
+                <form method="POST">
+                    @csrf
 
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        {{ __('Are you sure you want to delete :name from the list?', ['name' => $account->name]) }}
+                    <div class="field">
+                        <p>{{ __('Are you sure you want to delete :name from the list?', ['name' => $account->name]) }}</p>
                     </div>
-                </div>
 
-                <div class="form-group mb-0">
-                    <div class="col-sm-12">
-                        <button type="submit" class="btn btn-danger">{{ __('Yes') }}</button>
-                        <a href="{{ url()->previous() }}" class="btn btn-dark">{{ __('No') }}</a>
+                    <hr/>
+
+                    <div class="field">
+                        <button type="submit" class="button is-danger">{{ __('Yes') }}</button>
+                        <a href="{{ url()->previous() }}" class="button is-dark">{{ __('No') }}</a>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 @endsection

@@ -1,13 +1,11 @@
 @extends('layouts.app', ['title' => __('Home')])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <h2>{{ __('Home') }}</h2>
+    <div class="container">
+        <h1 class="title">{{ __('Home') }}</h1>
+        <h2 class="subtitle">{{ __('Welcome to V') }}</h2>
 
-            <p>{{ __('Welcome to V.') }}</p>
-
+        <div class="content">
             <p>{{ __('By creating an account here you\'ll be able to:') }}</p>
             <ul>
                 <li>{{ __('Add suspicious players to your list(s).') }}</li>
@@ -22,5 +20,4 @@
             </ul>
         </div>
     </div>
-</div>
 @endsection

@@ -1,66 +1,69 @@
 @extends('layouts.app', ['title' => __('Register')])
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <h2>{{ __('Register') }}</h2>
+    <div class="container">
+        <h1 class="title">{{ __('API key') }}</h1>
 
-            <div class="row justify-content-center">
-                <div class="col col-md-6 col-xl-4">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        @csrf
+        <div class="columns is-mobile is-centered">
+            <div class="column is-one-third">
+                <form method="POST">
+                    @csrf
 
-                        <div class="form-group">
-                            <label for="email" class="col-form-label">{{ __('E-Mail Address') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email">
-
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                    <div class="field">
+                        <label class="label">{{ __('E-Mail address') }}</label>
+                        <div class="control">
+                            <input class="input @error('email') is-danger @enderror" type="email"
+                                   name="email" value="{{ old('email') }}" required autocomplete="email">
                         </div>
 
-                        <div class="form-group">
-                            <label for="password" class="col-form-label">{{ __('Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        @error('email')
+                        <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                    <div class="field">
+                        <label class="label">{{ __('Password') }}</label>
+                        <div class="control">
+                            <input class="input @error('password') is-danger @enderror" type="password"
+                                   name="password" required autocomplete="password">
                         </div>
 
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-form-label">{{ __('Confirm Password') }}</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        @error('password')
+                        <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="field">
+                        <label class="label">{{ __('Confirm password') }}</label>
+                        <div class="control">
+                            <input class="input @error('password') is-danger @enderror" type="password"
+                                   name="password_confirmation" required autocomplete="password">
                         </div>
 
-                        <div class="form-group">
-                            {!! no_captcha()->display() !!}
+                        @error('password_confirmation')
+                        <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            @error('g-recaptcha-response')
-                                <span class="invalid-feedback" role="alert" style="display: block">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                    <div class="field">
+                        {!! no_captcha()->display() !!}
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Register') }}
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                        @error('g-recaptcha-response')
+                        <p class="help is-danger">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="field">
+                        <button type="submit" class="button is-primary">
+                            {{ __('Register') }}
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('scripts')
-{!! no_captcha()->script() !!}
+    {!! no_captcha()->script() !!}
 @endsection
