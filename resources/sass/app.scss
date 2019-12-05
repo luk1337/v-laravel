@@ -16,16 +16,6 @@ footer {
     line-height: 3.25rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    .table {
-        background-color: #141414;
-    }
-
-    .table td, .table th {
-        border: unset;
-    }
-}
-
 tr.valign-middle > td,
 tr.valign-middle > th {
     vertical-align: middle !important;
