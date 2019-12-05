@@ -46,13 +46,13 @@ class FetchNewBans extends Command
         $steamApiClient = new SteamApiClient;
         $updatedLists = [];
 
-        UserListAccount::chunk(100, function($accounts) use (&$steamApiClient, &$updatedLists) {
+        UserListAccount::chunk(100, function ($accounts) use (&$steamApiClient, &$updatedLists) {
             $summaries = $steamApiClient->getPlayerSummaries($accounts->implode('steamid', ','));
             $bans = $steamApiClient->getPlayerBans($accounts->implode('steamid', ','));
 
             foreach ($accounts as $account) {
                 $summary = array_filter($summaries, function ($e) use ($account) {
-                    return array_key_exists('steamid', $e) && $e['steamid'] === $account->steamid;
+                    return array_key_exists('steamid', $e) && (int)$e['steamid'] === $account->steamid;
                 });
 
                 if (empty($summary)) {
@@ -60,7 +60,7 @@ class FetchNewBans extends Command
                 }
 
                 $ban = array_filter($bans, function ($e) use ($account) {
-                    return array_key_exists('SteamId', $e) && $e['SteamId'] === $account->steamid;
+                    return array_key_exists('SteamId', $e) && (int)$e['SteamId'] === $account->steamid;
                 });
 
                 if (empty($ban)) {
