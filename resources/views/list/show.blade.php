@@ -1,9 +1,9 @@
-@extends('layouts.app', ['title' => __('Showing list 〜 :name', ['name' => $list->name])])
+@extends('layouts.app', ['title' => __('List 〜 :name', ['name' => $list->name])])
 
 @section('content')
     <div class="container">
         <div class="is-pulled-left">
-            <h1 class="title">{{ __('Showing list') }}</h1>
+            <h1 class="title">{{ __('List') }}</h1>
             <h2 class="subtitle">{{ $list->name }}</h2>
         </div>
 
