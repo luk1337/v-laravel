@@ -10,12 +10,15 @@
         @auth
             <div class="is-pulled-right">
                 @if ($list->user_id === Auth::id())
-                    <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}" class="button is-info">{{ __('Add account') }}</a>
+                    <a href="{{ route('list/add', ['uuid' => $list->uuid]) }}"
+                       class="button is-info">{{ __('Add account') }}</a>
                 @else
                     @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
-                        <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="button is-success">{{ __('Subscribe') }}</a>
+                        <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}"
+                           class="button is-success">{{ __('Subscribe') }}</a>
                     @else
-                        <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="button is-danger">{{ __('Unsubscribe') }}</a>
+                        <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}"
+                           class="button is-danger">{{ __('Unsubscribe') }}</a>
                     @endif
                 @endif
             </div>
@@ -46,13 +49,20 @@
                         @foreach ($accounts as $account)
                             <tr class="valign-middle">
                                 <th scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
-                                <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}"><img src="{{ $account->avatar }}" /></a></td>
-                                <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a></td>
+                                <td>
+                                    <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">
+                                        <img class="is-block" src="{{ $account->avatar }}"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a>
+                                </td>
                                 <td class="{{$account->number_of_game_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                 <td class="{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                 @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
                                     <td>
-                                        <span class="underline-dotted has-tooltip-top" data-tooltip="{{ $account->getLastBanTime() }}">
+                                        <span class="underline-dotted has-tooltip-top"
+                                              data-tooltip="{{ $account->getLastBanTime() }}">
                                             {{ $account->getLastBanTime()->format('Y-m-d') }}
                                         </span>
                                     </td>
@@ -61,7 +71,8 @@
                                 @endif
                                 @if ($account->pivot->created_at)
                                     <td>
-                                        <span class="underline-dotted has-tooltip-top" data-tooltip="{{ $account->pivot->created_at }}">
+                                        <span class="underline-dotted has-tooltip-top"
+                                              data-tooltip="{{ $account->pivot->created_at }}">
                                             {{ $account->pivot->created_at->format('Y-m-d') }}
                                         </span>
                                     </td>
@@ -71,7 +82,10 @@
                                 @if (Auth::check() && $list->user_id === Auth::id())
                                     <td>
                                         <div class="buttons has-addons">
-                                            <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}" class="button is-danger is-small">{{ __('Delete') }}</a>
+                                            <a href="{{ route('list/delete/account', ['uuid' => $list->uuid, 'steamid' => $account->steamid]) }}"
+                                               class="button is-danger is-small">
+                                                {{ __('Delete') }}
+                                            </a>
                                         </div>
                                     </td>
                                 @endif

@@ -23,8 +23,11 @@
                         @foreach ($accounts as $account)
                             <tr class="valign-middle">
                                 <th scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
-                                <td><a href="https://steamcommunity.com/profiles/{{ $account->steamid }}"><img
-                                            src="{{ $account->avatar }}"/></a></td>
+                                <td>
+                                    <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">
+                                        <img class="is-block" src="{{ $account->avatar }}"/>
+                                    </a>
+                                </td>
                                 <td>
                                     <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a>
                                 </td>
@@ -32,7 +35,8 @@
                                 <td class="{{$account->number_of_vac_bans > 0 ? ' text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                 @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
                                     <td>
-                                        <span class="underline-dotted has-tooltip-top" data-tooltip="{{ $account->getLastBanTime() }}">
+                                        <span class="underline-dotted has-tooltip-top"
+                                              data-tooltip="{{ $account->getLastBanTime() }}">
                                             {{ $account->getLastBanTime()->format('Y-m-d') }}
                                         </span>
                                     </td>
