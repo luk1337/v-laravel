@@ -20,6 +20,26 @@ th {
     vertical-align: bottom;
 }
 
+@media screen and (min-width: 769px) {
+    .navbar > .container .navbar-brand, .container > .navbar .navbar-brand {
+        margin-left: unset;
+    }
+
+    .navbar > .container .navbar-menu, .container > .navbar .navbar-menu {
+        margin-right: unset;
+    }
+}
+
+@media screen and (min-width: $desktop) {
+    .navbar > .container .navbar-brand, .container > .navbar .navbar-brand {
+        margin-left: -0.75rem;
+    }
+
+    .navbar > .container .navbar-menu, .container > .navbar .navbar-menu {
+        margin-right: -0.75rem;
+    }
+}
+
 tr.valign-middle > td,
 tr.valign-middle > th {
     vertical-align: middle !important;
