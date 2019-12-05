@@ -29,14 +29,13 @@
                                 </td>
                                 <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
                                 @if (!$list->getBannedAccounts()->isEmpty())
-                                    <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）
-                                    </td>
+                                    <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }}%）</td>
                                 @else
                                     <td>{{ $list->accounts->count() }}</td>
                                 @endif
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
-                                @if (Auth::Check() && $list->user_id != Auth::User()->id)
-                                    <td>
+                                <td>
+                                    @if (Auth::Check() && $list->user_id != Auth::User()->id)
                                         <div class="buttons has-addons">
                                             @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
                                                 <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="button is-info is-small">{{ __('Subscribe') }}</a>
@@ -44,8 +43,8 @@
                                                 <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="button is-danger is-small">{{ __('Unsubscribe') }}</a>
                                             @endif
                                         </div>
-                                    </td>
-                                @endif
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
