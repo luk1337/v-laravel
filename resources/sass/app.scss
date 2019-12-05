@@ -17,6 +17,10 @@ footer {
 }
 
 @media (prefers-color-scheme: dark) {
+    a {
+        color: #3273dc;
+    }
+
     .table {
         background-color: #141414;
     }
