@@ -16,6 +16,10 @@ footer {
     line-height: 3.25rem;
 }
 
+th {
+    vertical-align: bottom;
+}
+
 tr.valign-middle > td,
 tr.valign-middle > th {
     vertical-align: middle !important;
