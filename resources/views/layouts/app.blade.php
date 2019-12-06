@@ -7,6 +7,9 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- Theme color -->
+        <meta name="theme-color" content="#212121">
+
         <title>{{ config('app.name', 'Laravel') }}{{ !empty($title) ? " 〜 " . $title : '' }}</title>
 
         <!-- Scripts -->
