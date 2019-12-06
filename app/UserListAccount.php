@@ -18,4 +18,16 @@ class UserListAccount extends Model
     public function getLastBanTime() {
         return Carbon::parse($this->last_ban_date);
     }
+
+    public function getAvatar() {
+        return $this->avatar;
+    }
+
+    public function getAvatarMedium() {
+        return rtrim($this->avatar, '.jpg') . '_medium.jpg';
+    }
+
+    public function getAvatarFull() {
+        return rtrim($this->avatar, '.jpg') . '_full.jpg';
+    }
 }

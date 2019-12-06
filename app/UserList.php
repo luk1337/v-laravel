@@ -74,7 +74,7 @@ class UserList extends Model
 
                 $account = UserListAccount::firstOrNew(['steamid' => $steamId]);
                 $account->steamid = $steamId;
-                $account->avatar = $summary['avatarfull'];
+                $account->avatar = $summary['avatar'];
                 $account->name = $summary['personaname'];
                 $account->number_of_vac_bans = $ban['NumberOfVACBans'];
                 $account->number_of_game_bans = $ban['NumberOfGameBans'];
