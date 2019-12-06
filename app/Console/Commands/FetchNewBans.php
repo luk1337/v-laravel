@@ -87,7 +87,7 @@ class FetchNewBans extends Command
                     }
                 }
 
-                $account->avatar = $summary['avatar'];
+                $account->avatar = $summary['avatarfull'];
                 $account->name = $summary['personaname'];
                 $account->save();
             }
