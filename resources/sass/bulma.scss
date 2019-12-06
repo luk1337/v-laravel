@@ -49,6 +49,8 @@ $table-striped-row-even-hover-background-color: lighten($grey-darker, 2);
 $input-color: lighten($black, 20);
 $input-disabled-color: lighten($black, 50);
 
+$pagination-current-background-color: lighten($link-focus-border, 5);
+
 @import '~bulma/sass/base/_all';
 @import '~bulma/sass/elements/_all';
 @import '~bulma/sass/form/_all';
