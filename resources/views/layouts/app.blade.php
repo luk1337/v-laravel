@@ -41,7 +41,7 @@
                         </a>
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">
-                                Lists
+                                {{ __('Lists') }}
                             </a>
 
                             <div class="navbar-dropdown">
