@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="field">
-                        <button type="submit" class="button is-primary">
+                        <button type="submit" class="button is-info">
                             {{ __('Send password reset link') }}
                         </button>
                     </div>

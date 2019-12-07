@@ -18,7 +18,7 @@
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
                         @csrf
 
-                        <button type="submit" class="button is-primary">
+                        <button type="submit" class="button is-info">
                             {{ __('click here to request another') }}
                         </button>
                     </form>
