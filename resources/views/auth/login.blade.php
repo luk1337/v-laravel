@@ -35,11 +35,9 @@
 
                     <div class="field">
                         <div class="control">
-                            <label class="checkbox">
-                                <input class="checkbox" type="checkbox"
-                                       name="remember"{{ old('remember') ? 'checked' : '' }}>
-                                {{ __('Remember Me') }}
-                            </label>
+                            <input class="is-checkradio" type="checkbox" id="remember"
+                                   name="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <label for="remember">{{ __('Remember Me') }}</label>
                         </div>
                     </div>
 
