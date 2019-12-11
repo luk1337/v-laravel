@@ -48,9 +48,15 @@ $table-striped-row-even-hover-background-color: lighten($grey-darker, 2);
 
 $hr-background-color: $grey-dark;
 
-$input-color: lighten($black, 20);
-$input-disabled-color: lighten($black, 35);
-$input-placeholder-color: lighten($black, 45);
+$input-background-color: $grey-darker;
+$input-border-color: lighten($input-background-color, 20);
+$input-color: darken($white, 10);
+$input-disabled-background-color: $input-background-color;
+$input-disabled-border-color: $input-border-color;
+$input-disabled-color: darken($white, 20);
+$input-placeholder-background-color: $input-background-color;
+$input-placeholder-border-color: $input-border-color;
+$input-placeholder-color: darken($white, 30);
 
 $pagination-current-background-color: lighten($link-focus-border, 5);
 
