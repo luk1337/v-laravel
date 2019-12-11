@@ -35,7 +35,7 @@
 
                     <div class="field">
                         <div class="control">
-                            <input class="is-checkradio" type="checkbox" id="remember"
+                            <input class="is-checkradio is-info" type="checkbox" id="remember"
                                    name="remember" {{ old('remember') ? 'checked' : '' }}>
                             <label for="remember">{{ __('Remember Me') }}</label>
                         </div>
