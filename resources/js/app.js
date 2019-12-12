@@ -1,3 +1,5 @@
+import 'simplebar';
+
 var $ = require("jquery");
 
 $(function () {

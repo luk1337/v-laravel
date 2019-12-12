@@ -1,6 +1,9 @@
 // Bulma
 @import 'bulma';
 
+// SimpleBar
+@import 'simplebar';
+
 body {
     display: flex;
     min-height: 100vh;
@@ -51,4 +54,8 @@ span.underline-dotted {
 
 span.underline-dotted:hover {
     border-bottom: none;
+}
+
+.simplebar-scrollbar:before {
+    background: #aaa;
 }

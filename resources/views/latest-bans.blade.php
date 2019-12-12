@@ -7,7 +7,7 @@
         @if ($accounts->isEmpty())
             <b>{{ __('Sowwy, it looks like no one got banned recently.') }}</b>
         @else
-            <div class="table-container">
+            <div class="table-container" data-simplebar>
                 <table class="table is-stripped is-fullwidth">
                     <thead>
                         <tr>

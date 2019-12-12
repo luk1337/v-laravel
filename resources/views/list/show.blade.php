@@ -29,7 +29,7 @@
         @if ($accounts->isEmpty())
             <b>{{ __('Sowwy, it looks like this list is empty.') }}</b>
         @else
-            <div class="table-container">
+            <div class="table-container" data-simplebar>
                 <table class="table is-stripped is-fullwidth">
                     <thead>
                         <tr>

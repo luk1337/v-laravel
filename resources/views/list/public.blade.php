@@ -7,7 +7,7 @@
         @if ($lists->isEmpty())
             <b>{{ __('Sowwy, it looks like there are no public lists.') }}</b>
         @else
-            <div class="table-container">
+            <div class="table-container" data-simplebar>
                 <table class="table is-stripped is-fullwidth">
                     <thead>
                         <tr>
