@@ -17,7 +17,7 @@
                     <hr/>
 
                     <div class="field">
-                        <button type="submit" class="button is-danger">{{ __('Yes') }}</button>
+                        <button type="submit" class="button is-info">{{ __('Yes') }}</button>
                         <a href="{{ url()->previous() }}" class="button is-dark">{{ __('No') }}</a>
                     </div>
                 </form>
