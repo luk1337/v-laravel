@@ -210,7 +210,7 @@ class UserListController extends Controller
             ->whereIn('privacy', ['public', 'unlisted'])
             ->firstOrFail();
 
-        $subscription = UserListSubscription::firstOrNew(['user_list_id' => $list->id, 'user_id' => Auth::id()]);
+        $subscription = $list->subscribers()->where('user_id', Auth::id())->firstOrFail();
         $subscription->delete();
 
         return redirect('/list/public');

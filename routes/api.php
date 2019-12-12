@@ -231,7 +231,7 @@ Route::post('/list/unsubscribe', function (Request $request) {
         ]);
     }
 
-    $subscription = UserListSubscription::firstOrNew(['user_list_id' => $list->id, 'user_id' => $user->id]);
+    $subscription = $list->subscribers()->where('user_id', $user->id)->firstOrFail();
     $subscription->delete();
 
     return response()->json([
