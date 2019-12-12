@@ -49,7 +49,7 @@ tr.valign-middle > th {
 }
 
 span.underline-dotted {
-    border-bottom: 1px dashed #636b6f;
+    border-bottom: 1px dashed darken($grey-light, 15);
 }
 
 span.underline-dotted:hover {
