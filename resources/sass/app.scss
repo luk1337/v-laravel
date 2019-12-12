@@ -23,7 +23,7 @@ footer {
     vertical-align: bottom;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: $tablet) {
     .navbar > .container .navbar-brand, .container > .navbar .navbar-brand {
         margin-left: unset;
     }
