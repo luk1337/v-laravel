@@ -36,7 +36,7 @@
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                 <td>
                                     <div class="buttons has-addons">
-                                        <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="button is-info is-small">{{ __('Unsubscribe') }}</a>
+                                        <a href="{{ route('list/unsubscribe', ['uuid' => $list->uuid]) }}" class="button is-danger is-small">{{ __('Unsubscribe') }}</a>
                                     </div>
                                 </td>
                             </tr>
