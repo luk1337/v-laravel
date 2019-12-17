@@ -72,8 +72,8 @@ class FetchNewBans extends Command
 
                 $account = UserListAccount::where('steamid', $account->steamid)->firstOrFail();
 
-                if ($account->number_of_vac_bans != $ban['NumberOfVACBans'] ||
-                    $account->number_of_game_bans != $ban['NumberOfGameBans']) {
+                if ($account->number_of_vac_bans !== $ban['NumberOfVACBans'] ||
+                    $account->number_of_game_bans !== $ban['NumberOfGameBans']) {
                     $account->number_of_vac_bans = $ban['NumberOfVACBans'];
                     $account->number_of_game_bans = $ban['NumberOfGameBans'];
                     $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);
@@ -99,7 +99,7 @@ class FetchNewBans extends Command
 
             $list->user()->first()->notify(new NewBansNotification($list, $accounts));
 
-            if ($list->privacy != 'private') {
+            if ($list->privacy !== 'private') {
                 foreach ($list->subscribers()->get() as $subscriber) {
                     $subscriber->user()->first()->notify(new NewBansNotification($list, $accounts));
                 }

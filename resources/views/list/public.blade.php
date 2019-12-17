@@ -35,7 +35,7 @@
                                 @endif
                                 <td>{{ Carbon\Carbon::parse($list->created_at)->format('Y-m-d') }}</td>
                                 <td>
-                                    @if (Auth::Check() && $list->user_id != Auth::User()->id)
+                                    @if (Auth::Check() && $list->user_id !== Auth::User()->id)
                                         <div class="buttons has-addons">
                                             @if (!Auth::User()->subscriptions()->get()->contains('user_list_id', $list->id))
                                                 <a href="{{ route('list/subscribe', ['uuid' => $list->uuid]) }}" class="button is-info is-small">{{ __('Subscribe') }}</a>
