@@ -8,7 +8,6 @@ use App\UserList;
 use App\UserListAccount;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use Illuminate\Notifications\Messages\MailMessage;
 
 class FetchNewBans extends Command
 {
