@@ -80,10 +80,10 @@ class FetchNewBans extends Command
 
                     foreach ($account->lists()->get() as $list) {
                         if (!array_key_exists($list->id, $updatedLists)) {
-                            $updatedLists[$list->id] = [];
+                            $updatedLists[$list->id] = [$account->id];
+                        } else {
+                            array_push($updatedLists[$list->id], $account->id);
                         }
-
-                        array_push($updatedLists[$list->id], $account->id);
                     }
                 }
 
