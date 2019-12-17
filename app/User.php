@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -37,7 +36,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
         static::deleting(function ($user) {
@@ -46,11 +46,13 @@ class User extends Authenticatable
         });
     }
 
-    public function lists() {
+    public function lists()
+    {
         return $this->hasMany('App\UserList');
     }
 
-    public function subscriptions() {
+    public function subscriptions()
+    {
         return $this->hasMany('App\UserListSubscription');
     }
 }

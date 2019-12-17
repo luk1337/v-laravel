@@ -11,23 +11,28 @@ class UserListAccount extends Model
         'steamid', 'avatar', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date',
     ];
 
-    public function lists() {
+    public function lists()
+    {
         return $this->belongsToMany('App\UserList');
     }
 
-    public function getLastBanTime() {
+    public function getLastBanTime()
+    {
         return Carbon::parse($this->last_ban_date);
     }
 
-    public function getAvatar() {
+    public function getAvatar()
+    {
         return $this->avatar;
     }
 
-    public function getAvatarMedium() {
+    public function getAvatarMedium()
+    {
         return rtrim($this->avatar, '.jpg') . '_medium.jpg';
     }
 
-    public function getAvatarFull() {
+    public function getAvatarFull()
+    {
         return rtrim($this->avatar, '.jpg') . '_full.jpg';
     }
 }

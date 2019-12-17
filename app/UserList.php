@@ -17,35 +17,41 @@ class UserList extends Model
         'private' => 'Private',
     ];
 
-    protected static function boot() {
+    protected static function boot()
+    {
         parent::boot();
 
-        static::deleting(function($list) {
+        static::deleting(function ($list) {
             $list->accounts()->detach();
             $list->subscribers()->delete();
         });
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function accounts() {
+    public function accounts()
+    {
         return $this->belongsToMany('App\UserListAccount')
             ->withTimestamps();
     }
 
-    public function subscribers() {
+    public function subscribers()
+    {
         return $this->hasMany('App\UserListSubscription');
     }
 
-    public function getBannedAccounts() {
-        return $this->accounts->filter(function($account) {
+    public function getBannedAccounts()
+    {
+        return $this->accounts->filter(function ($account) {
             return $account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0;
         });
     }
 
-    public function addToList($steamIds) {
+    public function addToList($steamIds)
+    {
         $steamApiClient = new SteamApiClient;
 
         foreach (array_chunk($steamIds, 100) as $steamIds) {

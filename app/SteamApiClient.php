@@ -14,14 +14,16 @@ class SteamApiClient
         'clan' => 0x0170000000000000,
     ];
 
-    function __construct() {
+    function __construct()
+    {
         $this->apiKey = env('STEAM_API_KEY', '');
         $this->apiClient = new Client([
             'base_uri' => 'http://api.steampowered.com',
         ]);
     }
 
-    function getPlayerBans($steamIds) {
+    function getPlayerBans($steamIds)
+    {
         $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerBans/v1', [
             'query' => [
                 'key' => $this->apiKey,
@@ -32,7 +34,8 @@ class SteamApiClient
         return $json['players'];
     }
 
-    function getPlayerSummaries($steamIds) {
+    function getPlayerSummaries($steamIds)
+    {
         $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerSummaries/v0002', [
             'query' => [
                 'key' => $this->apiKey,
@@ -43,7 +46,8 @@ class SteamApiClient
         return $json['response']['players'];
     }
 
-    function resolveVanityURL($vanityUrl) {
+    function resolveVanityURL($vanityUrl)
+    {
         $request = $this->apiClient->request('GET', 'ISteamUser/ResolveVanityURL/v0001', [
             'query' => [
                 'key' => $this->apiKey,
@@ -54,7 +58,8 @@ class SteamApiClient
         return $json['response'];
     }
 
-    function convertToSteamID64($str) {
+    function convertToSteamID64($str)
+    {
         if (preg_match('/^\d{17}$/', $str, $matches)) {
             return $matches[0];
         }

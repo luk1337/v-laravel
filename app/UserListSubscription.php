@@ -15,11 +15,13 @@ class UserListSubscription extends Model
         'user_list_id', 'user_id',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function userList() {
+    public function userList()
+    {
         return $this->belongsTo('App\UserList');
     }
 }
