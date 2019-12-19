@@ -48,7 +48,7 @@
                     <tbody>
                         @foreach ($accounts as $account)
                             <tr class="valign-middle">
-                                <th scope="row">{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
+                                <th>{{ $loop->iteration + (($accounts->currentPage() - 1) * $accounts->perPage()) }}</th>
                                 <td>
                                     <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}" class="image is-32x32">
                                         <img class="is-block is-rounded" src="{{ $account->getAvatarFull() }}"/>

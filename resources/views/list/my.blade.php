@@ -22,7 +22,7 @@
                     <tbody>
                         @foreach ($lists as $list)
                             <tr class="valign-middle">
-                                <th scope="row">{{ $loop->iteration }}</th>
+                                <th>{{ $loop->iteration }}</th>
                                 <td><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a>
                                 </td>
                                 <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
