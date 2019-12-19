@@ -53,6 +53,9 @@ $table-striped-row-even-hover-background-color: lighten($grey-darker, 2);
 
 $hr-background-color: $grey-dark;
 
+$button-text-color: darken($text, 30);
+$button-text-hover-background-color: transparent;
+
 $input-background-color: $grey-darker;
 $input-border-color: lighten($input-background-color, 20);
 $input-color: darken($white, 10);
