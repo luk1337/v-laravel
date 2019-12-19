@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="field">
-                        {!! no_captcha()->display() !!}
+                        {!! no_captcha()->display(null, ['data-theme' => 'dark']) !!}
 
                         @error('g-recaptcha-response')
                         <p class="help is-danger">{{ $message }}</p>
