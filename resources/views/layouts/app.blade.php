@@ -108,6 +108,7 @@
                         @endguest
                     </div>
                 </div>
+            </div>
         </nav>
 
         <section id="content" class="section">
