@@ -257,7 +257,7 @@ Route::post('/list/show', function (Request $request) {
     }
 
     $accounts = $list->accounts()
-        ->orderBy('user_list_account_id', 'desc')
+        ->orderBy('pivot_id', 'desc')
         ->get(['steamid', 'avatar', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date', 'user_list_accounts.created_at']);
 
     return response()->json([

@@ -161,7 +161,7 @@ class UserListController extends Controller
                 }
             })
             ->firstOrFail();
-        $accounts = $list->accounts()->orderBy('id', 'desc')->paginate(150)->onEachSide(2);
+        $accounts = $list->accounts()->orderBy('pivot_id', 'desc')->paginate(150)->onEachSide(2);
 
         return view('list/show')
             ->with('list', $list)

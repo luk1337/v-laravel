@@ -35,6 +35,7 @@ class UserList extends Model
     public function accounts()
     {
         return $this->belongsToMany('App\UserListAccount')
+            ->withPivot(['id'])
             ->withTimestamps();
     }
 
