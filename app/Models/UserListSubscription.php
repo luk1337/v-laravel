@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,6 +22,6 @@ class UserListSubscription extends Model
 
     public function userList()
     {
-        return $this->belongsTo('App\UserList');
+        return $this->belongsTo('App\Models\UserList');
     }
 }

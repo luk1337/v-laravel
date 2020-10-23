@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\SteamApiClient;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -34,14 +35,14 @@ class UserList extends Model
 
     public function accounts()
     {
-        return $this->belongsToMany('App\UserListAccount')
+        return $this->belongsToMany('App\Models\UserListAccount')
             ->withPivot(['id'])
             ->withTimestamps();
     }
 
     public function subscribers()
     {
-        return $this->hasMany('App\UserListSubscription');
+        return $this->hasMany('App\Models\UserListSubscription');
     }
 
     public function getBannedAccounts()

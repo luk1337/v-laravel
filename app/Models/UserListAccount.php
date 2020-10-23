@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +13,7 @@ class UserListAccount extends Model
 
     public function lists()
     {
-        return $this->belongsToMany('App\UserList');
+        return $this->belongsToMany('App\Models\UserList');
     }
 
     public function getLastBanTime()

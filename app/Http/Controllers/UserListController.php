@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UserList;
+use App\Models\UserListSubscription;
 use App\SteamApiClient;
-use App\UserList;
-use App\UserListSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webpatser\Uuid\Uuid;

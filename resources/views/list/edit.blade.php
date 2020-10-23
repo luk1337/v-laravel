@@ -28,7 +28,7 @@
                         <div class="control">
                             <div class="select is-fullwidth">
                                 <select class="@error('privacy') is-danger @enderror" name="privacy">
-                                    @foreach (App\UserList::$listPrivacyTypes as $key => $value)
+                                    @foreach (App\Models\UserList::$listPrivacyTypes as $key => $value)
                                         <option value="{{ $key }}" {{ (old('privacy') ?: $list->privacy) === $key ? ' selected' : '' }}>
                                             {{ $value }}
                                         </option>

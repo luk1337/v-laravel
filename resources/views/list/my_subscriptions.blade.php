@@ -27,7 +27,7 @@
                                 <th>{{ $loop->iteration }}</th>
                                 <td><a href="{{ route('list/show', ['uuid' => $list->uuid]) }}">{{ $list->name }}</a>
                                 </td>
-                                <td>{{ App\UserList::$listPrivacyTypes[$list->privacy] }}</td>
+                                <td>{{ App\Models\UserList::$listPrivacyTypes[$list->privacy] }}</td>
                                 @if (!$list->getBannedAccounts()->isEmpty())
                                     <td>{{ $list->accounts->count() }}（{{ (int)(($list->getBannedAccounts()->count() / $list->accounts()->count()) * 100) }} %）</td>
                                 @else

@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Models\UserList;
+use App\Models\UserListAccount;
 use App\Notifications\NewBansNotification;
 use App\SteamApiClient;
-use App\UserList;
-use App\UserListAccount;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 

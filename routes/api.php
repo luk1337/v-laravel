@@ -1,10 +1,10 @@
 <?php
 
 use App\Models\User;
+use App\Models\UserList;
+use App\Models\UserListAccount;
+use App\Models\UserListSubscription;
 use App\SteamApiClient;
-use App\UserList;
-use App\UserListAccount;
-use App\UserListSubscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Webpatser\Uuid\Uuid;
@@ -64,7 +64,7 @@ Route::post('/list/create', function (Request $request) {
         ]);
     }
 
-    if (empty($request->privacy) || !in_array($request->privacy, array_keys(App\UserList::$listPrivacyTypes))) {
+    if (empty($request->privacy) || !in_array($request->privacy, array_keys(UserList::$listPrivacyTypes))) {
         return response()->json([
             'status' => 'error',
             'message' => 'Invalid or missing `privacy` parameter.',
@@ -139,7 +139,7 @@ Route::post('/list/edit', function (Request $request) {
         ]);
     }
 
-    if (empty($request->privacy) || !in_array($request->privacy, array_keys(App\UserList::$listPrivacyTypes))) {
+    if (empty($request->privacy) || !in_array($request->privacy, array_keys(UserList::$listPrivacyTypes))) {
         return response()->json([
             'status' => 'error',
             'message' => 'Invalid or missing `privacy` parameter.',

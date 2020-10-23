@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\UserListAccount;
+use App\Models\UserListAccount;
 
 class LatestBansController extends Controller
 {

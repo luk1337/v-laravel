@@ -52,11 +52,11 @@ class User extends Authenticatable
 
     public function lists()
     {
-        return $this->hasMany('App\UserList');
+        return $this->hasMany('App\Models\UserList');
     }
 
     public function subscriptions()
     {
-        return $this->hasMany('App\UserListSubscription');
+        return $this->hasMany('App\Models\UserListSubscription');
     }
 }
