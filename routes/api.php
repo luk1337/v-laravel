@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\User;
 use App\SteamApiClient;
-use App\User;
 use App\UserList;
 use App\UserListAccount;
 use App\UserListSubscription;
