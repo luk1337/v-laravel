@@ -1,6 +1,36 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v8.5.17...8.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v8.5.22...8.x)
+
+
+## [v8.5.22 (2021-07-13)](https://github.com/laravel/laravel/compare/v8.5.21...v8.5.22)
+
+### Changed
+- Add RateLimiter facade alias ([#5642](https://github.com/laravel/laravel/pull/5642))
+
+
+## [v8.5.21 (2021-07-06)](https://github.com/laravel/laravel/compare/v8.5.20...v8.5.21)
+
+### Changed
+- Update validation language files ([#5637](https://github.com/laravel/laravel/pull/5637), [#5636](https://github.com/laravel/laravel/pull/5636))
+
+
+## [v8.5.20 (2021-06-15)](https://github.com/laravel/laravel/compare/v8.5.19...v8.5.20)
+
+### Changed
+- Add translation for current_password rule ([#5628](https://github.com/laravel/laravel/pull/5628))
+
+
+## [v8.5.19 (2021-06-01)](https://github.com/laravel/laravel/compare/v8.5.18...v8.5.19)
+
+### Changed
+- Update skeleton for filesystem tweaks to make sail usage easier ([c5d38d4](https://github.com/laravel/laravel/commit/c5d38d469a447d6831c3cf56d193be7941d6586f))
+
+
+## [v8.5.18 (2021-05-18)](https://github.com/laravel/laravel/compare/v8.5.17...v8.5.18)
+
+### Changed
+- Add Octane cache store ([#5610](https://github.com/laravel/laravel/pull/5610), [637c85d](https://github.com/laravel/laravel/commit/637c85d624bf19355025b68aaa90e6cadf8a2881))
 
 
 ## [v8.5.17 (2021-05-11)](https://github.com/laravel/laravel/compare/v8.5.16...v8.5.17)
