@@ -1,6 +1,48 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v8.5.22...8.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v8.6.3...8.x)
+
+
+## [v8.6.3 (2021-10-05)](https://github.com/laravel/laravel/compare/v8.6.2...v8.6.3)
+
+### Changed
+- Add failover in supported mail configurations comment section ([#5692](https://github.com/laravel/laravel/pull/5692))
+- Keeping access tokens migration id consistent ([#5691](https://github.com/laravel/laravel/pull/5691))
+- Ensures downloaded version of Collision supports PHP 8.1 ([#5697](https://github.com/laravel/laravel/pull/5697))
+
+### Fixed
+- Update lte and gte validation messages to have a grammatically parallel structure ([#5699](https://github.com/laravel/laravel/pull/5699))
+
+
+## [v8.6.2 (2021-09-07)](https://github.com/laravel/laravel/compare/v8.6.1...v8.6.2)
+
+### Changed
+- Dark mode auth links contrast ([#5678](https://github.com/laravel/laravel/pull/5678))
+- Added prohibits validation message ([#5681](https://github.com/laravel/laravel/pull/5681))
+
+
+## [v8.6.1 (2021-08-24)](https://github.com/laravel/laravel/compare/v8.6.0...v8.6.1)
+
+### Changed
+- Add failover driver to default mail config file ([#5672](https://github.com/laravel/laravel/pull/5672))
+
+
+## [v8.6.0 (2021-08-17)](https://github.com/laravel/laravel/compare/v8.5.24...v8.6.0)
+
+### Added
+- Sanctum ([#5663](https://github.com/laravel/laravel/pull/5663))
+
+
+## [v8.5.24 (2021-08-10)](https://github.com/laravel/laravel/compare/v8.5.23...v8.5.24)
+
+### Changed
+- Use new `TrustProxies` middleware ([#5662](https://github.com/laravel/laravel/pull/5662))
+
+
+## [v8.5.23 (2021-08-03)](https://github.com/laravel/laravel/compare/v8.5.22...v8.5.23)
+
+### Changed
+- Unified asset publishing ([#5654](https://github.com/laravel/laravel/pull/5654))
 
 
 ## [v8.5.22 (2021-07-13)](https://github.com/laravel/laravel/compare/v8.5.21...v8.5.22)

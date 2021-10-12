@@ -14,6 +14,7 @@ return [
     */
 
     'accepted' => 'The :attribute must be accepted.',
+    'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
     'after' => 'The :attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
@@ -52,9 +53,9 @@ return [
         'array' => 'The :attribute must have more than :value items.',
     ],
     'gte' => [
-        'numeric' => 'The :attribute must be greater than or equal :value.',
-        'file' => 'The :attribute must be greater than or equal :value kilobytes.',
-        'string' => 'The :attribute must be greater than or equal :value characters.',
+        'numeric' => 'The :attribute must be greater than or equal to :value.',
+        'file' => 'The :attribute must be greater than or equal to :value kilobytes.',
+        'string' => 'The :attribute must be greater than or equal to :value characters.',
         'array' => 'The :attribute must have :value items or more.',
     ],
     'image' => 'The :attribute must be an image.',
@@ -72,9 +73,9 @@ return [
         'array' => 'The :attribute must have less than :value items.',
     ],
     'lte' => [
-        'numeric' => 'The :attribute must be less than or equal :value.',
-        'file' => 'The :attribute must be less than or equal :value kilobytes.',
-        'string' => 'The :attribute must be less than or equal :value characters.',
+        'numeric' => 'The :attribute must be less than or equal to :value.',
+        'file' => 'The :attribute must be less than or equal to :value kilobytes.',
+        'string' => 'The :attribute must be less than or equal to :value characters.',
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
@@ -108,6 +109,7 @@ return [
     'prohibited' => 'The :attribute field is prohibited.',
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
+    'prohibits' => 'The :attribute field prohibits :other from being present.',
     'same' => 'The :attribute and :other must match.',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
