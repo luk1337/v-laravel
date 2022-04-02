@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1 class="title">{{ __('API key') }}</h1>
+        <h1 class="title">{{ __('Register') }}</h1>
 
         <div class="columns is-mobile is-centered">
             <div class="column is-one-third">
