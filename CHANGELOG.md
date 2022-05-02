@@ -1,6 +1,28 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v9.1.2...9.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v9.1.5...9.x)
+
+## [v9.1.5](https://github.com/laravel/laravel/compare/v9.1.4...v9.1.5) - 2022-04-12
+
+### Changed
+
+- Rearrange route methods by @osbre in https://github.com/laravel/laravel/pull/5862
+- Add levels to handler by @taylorotwell in https://github.com/laravel/laravel/commit/a507e1424339633ce423729ec0ac49b99f0e57d7
+
+## [v9.1.4](https://github.com/laravel/laravel/compare/v9.1.3...v9.1.4) - 2022-03-29
+
+### Changed
+
+- Add encryption configuration by @taylorotwell in https://github.com/laravel/laravel/commit/f7b982ebdf7bd31eda9f05f901bd92ed32446156
+
+## [v9.1.3](https://github.com/laravel/laravel/compare/v9.1.2...v9.1.3) - 2022-03-29
+
+### Changed
+
+- Add an example to the class aliases by @nshiro in https://github.com/laravel/laravel/pull/5846
+- Add username in config to use with phpredis + ACL by @neoteknic in https://github.com/laravel/laravel/pull/5851
+- Remove "password" from validation lang by @mnastalski in https://github.com/laravel/laravel/pull/5856
+- Make authenticate session a route middleware by @taylorotwell in https://github.com/laravel/laravel/pull/5842
 
 ## [v9.1.2](https://github.com/laravel/laravel/compare/v9.1.1...v9.1.2) - 2022-03-15
 
