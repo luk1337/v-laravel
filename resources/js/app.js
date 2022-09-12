@@ -1,6 +1,7 @@
 import 'simplebar';
 
-var $ = require("jquery");
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
 
 $(function () {
     //$('[data-toggle="tooltip"]').tooltip();
