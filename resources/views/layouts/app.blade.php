@@ -12,11 +12,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}{{ !empty($title) ? " 〜 " . $title : '' }}</title>
 
-        <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
-
-        <!-- Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <!-- Resources -->
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body>
         <nav class="navbar" role="navigation" aria-label="main navigation">
