@@ -68,7 +68,7 @@ class SteamApiClient
             return $matches[1];
         }
 
-        if (preg_match('/^(?:http(?:s)?:\/\/)?steamcommunity.com\/id\/(\w+)(?:\/)?$/', $str, $matches)) {
+        if (preg_match('/^(?:http(?:s)?:\/\/)?steamcommunity.com\/id\/([a-zA-Z0-9-_]+)(?:\/)?$/', $str, $matches)) {
             $response = $this->resolveVanityURL($matches[1]);
 
             if ($response['success'] === 1) {
@@ -88,8 +88,8 @@ class SteamApiClient
             return $matches[1] + $this->steamIdIdentifiers['individual'];
         }
 
-        if (preg_match('/^(\w+)$/', $str, $matches)) {
-            $response = $this->resolveVanityURL($matches[1]);
+        if (preg_match('/^[a-zA-Z0-9-_]+$/', $str, $matches)) {
+            $response = $this->resolveVanityURL($matches[0]);
 
             if ($response['success'] === 1) {
                 return $response['steamid'];
