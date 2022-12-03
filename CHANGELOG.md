@@ -1,6 +1,34 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v9.3.7...9.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v9.3.11...9.x)
+
+## [v9.3.11](https://github.com/laravel/laravel/compare/v9.3.10...v9.3.11) - 2022-11-14
+
+### Changed
+
+- Adds lowercase validation rule translation by @timacdonald in https://github.com/laravel/laravel/pull/6028
+- Adds uppercase validation rule translation by @michaelnabil230 in https://github.com/laravel/laravel/pull/6029
+
+## [v9.3.10](https://github.com/laravel/laravel/compare/v9.3.9...v9.3.10) - 2022-10-28
+
+### Changed
+
+- Changing .env to make Pusher work without editing the commented out part in the bootstrap.js by @cveldman in https://github.com/laravel/laravel/pull/6021
+
+## [v9.3.9](https://github.com/laravel/laravel/compare/v9.3.8...v9.3.9) - 2022-10-17
+
+### Changed
+
+- Update welcome page colours by @timacdonald in https://github.com/laravel/laravel/pull/6002
+- Ignore .env.production by @yasapurnama in https://github.com/laravel/laravel/pull/6004
+- Upgrade axios to v1.x by @ankurk91 in https://github.com/laravel/laravel/pull/6008
+- Shorten pusher host config by @buihanh2304 in https://github.com/laravel/laravel/pull/6009
+
+## [v9.3.8](https://github.com/laravel/laravel/compare/v9.3.7...v9.3.8) - 2022-09-20
+
+### Changed
+
+- Validation added `required_if_accepted` by @luisprmat in https://github.com/laravel/laravel/pull/5987
 
 ## [v9.3.7](https://github.com/laravel/laravel/compare/v9.3.6...v9.3.7) - 2022-09-02
 
