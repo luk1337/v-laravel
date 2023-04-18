@@ -4,16 +4,24 @@
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    "repositories": [
+        {
+            "url": "https://github.com/Impact-Office-Supplies/noCAPTCHA.git",
+            "type": "git",
+            "reference": "e9e3bae553ba14f5d35d2b6f4f8eb304b005d4dd"
+        }
+    ],
     "require": {
         "php": "^8.1",
-        "arcanedev/no-captcha": "^13.0",
+        "arcanedev/no-captcha": "^14.1",
+        "arcanedev/php-html": "@dev",
         "doctrine/dbal": "^2.9",
-        "fruitcake/laravel-cors": "^2.0.5",
+        "fruitcake/laravel-cors": "dev-develop",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "laravel/ui": "^3.0",
+        "laravel/ui": "^4.2.1",
         "webpatser/laravel-uuid": "^4.0"
     },
     "require-dev": {
