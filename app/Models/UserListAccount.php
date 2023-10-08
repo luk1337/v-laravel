@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserListAccount extends Model
 {
     protected $fillable = [
-        'steamid', 'avatar', 'name', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date',
+        'steamid', 'avatar', 'name', 'community_banned', 'number_of_vac_bans', 'number_of_game_bans', 'last_ban_date',
     ];
 
     public function lists()

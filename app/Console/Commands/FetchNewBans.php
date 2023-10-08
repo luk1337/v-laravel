@@ -71,8 +71,10 @@ class FetchNewBans extends Command
 
                 $account = UserListAccount::where('steamid', $account->steamid)->firstOrFail();
 
-                if ($account->number_of_vac_bans !== $ban['NumberOfVACBans'] ||
+                if ($account->community_banned !== $ban['CommunityBanned'] ||
+                    $account->number_of_vac_bans !== $ban['NumberOfVACBans'] ||
                     $account->number_of_game_bans !== $ban['NumberOfGameBans']) {
+                    $account->community_banned = $ban['CommunityBanned'];
                     $account->number_of_vac_bans = $ban['NumberOfVACBans'];
                     $account->number_of_game_bans = $ban['NumberOfGameBans'];
                     $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);

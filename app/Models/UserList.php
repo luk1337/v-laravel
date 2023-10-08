@@ -84,6 +84,7 @@ class UserList extends Model
                 $account->steamid = $steamId;
                 $account->avatar = $summary['avatar'];
                 $account->name = $summary['personaname'];
+                $account->community_banned = $ban['CommunityBanned'];
                 $account->number_of_vac_bans = $ban['NumberOfVACBans'];
                 $account->number_of_game_bans = $ban['NumberOfGameBans'];
                 $account->last_ban_date = Carbon::now()->subDays($ban['DaysSinceLastBan']);

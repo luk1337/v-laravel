@@ -14,6 +14,7 @@
                             <th>{{ __('#') }}</th>
                             <th>{{ __('Avatar') }}</th>
                             <th>{{ __('Name') }}</th>
+                            <th>{{ __('Community banned') }}</th>
                             <th>{{ __('Game bans') }}</th>
                             <th>{{ __('VAC bans') }}</th>
                             <th>{{ __('Last ban date') }}</th>
@@ -31,6 +32,7 @@
                                 <td>
                                     <a href="https://steamcommunity.com/profiles/{{ $account->steamid }}">{{ $account->name }}</a>
                                 </td>
+                                <td class="{{$account->community_banned ? 'has-text-danger' : ''}}">{{ $account->community_banned ? __('Yes') : __('No') }}</td>
                                 <td class="{{$account->number_of_game_bans > 0 ? 'has-text-danger' : ''}}">{{ $account->number_of_game_bans }}</td>
                                 <td class="{{$account->number_of_vac_bans > 0 ? 'has-text-danger' : ''}}">{{ $account->number_of_vac_bans }}</td>
                                 @if ($account->number_of_vac_bans > 0 || $account->number_of_game_bans > 0)
