@@ -71,7 +71,7 @@ class FetchNewBans extends Command
 
                 $account = UserListAccount::where('steamid', $account->steamid)->firstOrFail();
 
-                if ($account->community_banned !== $ban['CommunityBanned'] ||
+                if ($account->community_banned !== (int)$ban['CommunityBanned'] ||
                     $account->number_of_vac_bans !== $ban['NumberOfVACBans'] ||
                     $account->number_of_game_bans !== $ban['NumberOfGameBans']) {
                     $account->community_banned = $ban['CommunityBanned'];
