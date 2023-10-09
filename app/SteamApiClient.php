@@ -16,7 +16,9 @@ class SteamApiClient
 
     function __construct()
     {
-        $this->apiKey = env('STEAM_API_KEY', '');
+        $apiKeys = explode(',', env('STEAM_API_KEY'));
+
+        $this->apiKey = $apiKeys[array_rand($apiKeys)];
         $this->apiClient = new Client([
             'base_uri' => 'http://api.steampowered.com',
         ]);
