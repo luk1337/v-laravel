@@ -42,10 +42,10 @@ class FetchNewBans extends Command
      */
     public function handle()
     {
-        $steamApiClient = new SteamApiClient;
         $updatedLists = [];
 
         UserListAccount::chunk(100, function ($accounts) use (&$steamApiClient, &$updatedLists) {
+            $steamApiClient = new SteamApiClient;
             $summaries = $steamApiClient->getPlayerSummaries($accounts->implode('steamid', ','));
             $bans = $steamApiClient->getPlayerBans($accounts->implode('steamid', ','));
 
