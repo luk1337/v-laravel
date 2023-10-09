@@ -3,6 +3,7 @@
 namespace App;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class SteamApiClient
 {
@@ -38,14 +39,25 @@ class SteamApiClient
 
     function getPlayerSummaries($steamIds)
     {
-        $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerSummaries/v1', [
-            'query' => [
-                'key' => $this->apiKey,
-                'steamids' => $steamIds,
-            ],
-        ]);
-        $json = json_decode($request->getBody(), true);
-        return $json['response']['players']['player'];
+        try {
+            $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerSummaries/v1', [
+                'query' => [
+                    'key' => $this->apiKey,
+                    'steamids' => $steamIds,
+                ],
+            ]);
+            $json = json_decode($request->getBody(), true);
+            return $json['response']['players']['player'];
+        } catch (ClientException $e) {
+            $request = $this->apiClient->request('GET', 'ISteamUser/GetPlayerSummaries/v2', [
+                'query' => [
+                    'key' => $this->apiKey,
+                    'steamids' => $steamIds,
+                ],
+            ]);
+            $json = json_decode($request->getBody(), true);
+            return $json['response']['players'];
+        }
     }
 
     function resolveVanityURL($vanityUrl)
