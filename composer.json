@@ -16,7 +16,6 @@
         "arcanedev/no-captcha": "^14.1",
         "arcanedev/php-html": "@dev",
         "doctrine/dbal": "^2.9",
-        "fruitcake/laravel-cors": "dev-develop",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
