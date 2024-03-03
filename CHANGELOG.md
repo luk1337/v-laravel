@@ -1,6 +1,26 @@
 # Release Notes
 
-## [Unreleased](https://github.com/laravel/laravel/compare/v10.2.9...10.x)
+## [Unreleased](https://github.com/laravel/laravel/compare/v10.3.2...10.x)
+
+## [v10.3.2](https://github.com/laravel/laravel/compare/v10.3.1...v10.3.2) - 2024-01-04
+
+* [10.x] Reverts `assertOk` change by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/laravel/pull/6303
+* Update Axios to latest version by [@u01jmg3](https://github.com/u01jmg3) in https://github.com/laravel/laravel/pull/6306
+* [10.x] Update Axios to latest version by [@u01jmg3](https://github.com/u01jmg3) in https://github.com/laravel/laravel/pull/6313
+
+## [v10.3.1](https://github.com/laravel/laravel/compare/v10.3.0...v10.3.1) - 2023-12-23
+
+* [10.x] Add roundrobin transport driver config by [@me-shaon](https://github.com/me-shaon) in https://github.com/laravel/laravel/pull/6301
+
+## [v10.3.0](https://github.com/laravel/laravel/compare/v10.2.10...v10.3.0) - 2023-12-19
+
+* [10.x] Use `assertOk()` instead of `assertStatus(200)` in tests by [@TENIOS](https://github.com/TENIOS) in https://github.com/laravel/laravel/pull/6287
+* [10.x] Vite 5 by [@timacdonald](https://github.com/timacdonald) in https://github.com/laravel/laravel/pull/6292
+
+## [v10.2.10](https://github.com/laravel/laravel/compare/v10.2.9...v10.2.10) - 2023-11-30
+
+* [10.x] Fixes missing property description by [@nunomaduro](https://github.com/nunomaduro) in https://github.com/laravel/laravel/pull/6275
+* [10.x] Add partitioned cookie config key by [@fabricecw](https://github.com/fabricecw) in https://github.com/laravel/laravel/pull/6257
 
 ## [v10.2.9](https://github.com/laravel/laravel/compare/v10.2.8...v10.2.9) - 2023-11-13
 
