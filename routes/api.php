@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\VerifyApiKey;
 use App\Models\User;
 use App\Models\UserList;
 use App\Models\UserListAccount;
@@ -8,17 +9,6 @@ use App\SteamApiClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Webpatser\Uuid\Uuid;
-
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
 
 Route::post('/list/add', function (Request $request) {
     if (!is_array($request->steamids)) {
@@ -54,7 +44,7 @@ Route::post('/list/add', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/create', function (Request $request) {
     if (empty($request->name) || strlen($request->name) > 64) {
@@ -83,7 +73,7 @@ Route::post('/list/create', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/delete', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -101,7 +91,7 @@ Route::post('/list/delete', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/delete/account', function (Request $request) {
     if (empty($request->steamid)) {
@@ -129,7 +119,7 @@ Route::post('/list/delete/account', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/edit', function (Request $request) {
     if (empty($request->name) || strlen($request->name) > 64) {
@@ -163,7 +153,7 @@ Route::post('/list/edit', function (Request $request) {
     return response()->json([
         'status' => 'success'
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/my', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -174,7 +164,7 @@ Route::post('/list/my', function (Request $request) {
         'status' => 'success',
         'lists' => $lists,
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/my/subscriptions', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -187,7 +177,7 @@ Route::post('/list/my/subscriptions', function (Request $request) {
         'status' => 'success',
         'lists' => $lists,
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/public', function (Request $request) {
     $lists = UserList::where('privacy', 'public')->get();
@@ -196,7 +186,7 @@ Route::post('/list/public', function (Request $request) {
         'status' => 'success',
         'lists' => $lists,
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/subscribe', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -217,7 +207,7 @@ Route::post('/list/subscribe', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/unsubscribe', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -238,7 +228,7 @@ Route::post('/list/unsubscribe', function (Request $request) {
     return response()->json([
         'status' => 'success',
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/list/show', function (Request $request) {
     $user = User::where('api_key', $request->api_key)->first();
@@ -264,7 +254,7 @@ Route::post('/list/show', function (Request $request) {
         'status' => 'success',
         'accounts' => $accounts,
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
 
 Route::post('/latest-bans', function (Request $request) {
     $accounts = UserListAccount::where(function ($query) {
@@ -277,4 +267,4 @@ Route::post('/latest-bans', function (Request $request) {
         'status' => 'success',
         'accounts' => $accounts,
     ]);
-})->middleware('api.key');
+})->middleware(VerifyApiKey::class);
