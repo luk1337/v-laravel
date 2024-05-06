@@ -7,6 +7,7 @@ use App\Models\UserListAccount;
 use App\Notifications\NewBansNotification;
 use App\SteamApiClient;
 use Carbon\Carbon;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Console\Command;
 
 class FetchNewBans extends Command
@@ -46,8 +47,38 @@ class FetchNewBans extends Command
 
         UserListAccount::chunk(100, function ($accounts) use (&$steamApiClient, &$updatedLists) {
             $steamApiClient = new SteamApiClient;
-            $summaries = $steamApiClient->getPlayerSummaries($accounts->implode('steamid', ','));
-            $bans = $steamApiClient->getPlayerBans($accounts->implode('steamid', ','));
+            $summaries = null;
+            $bans = null;
+
+            while (true) {
+                try {
+                    $summaries = $steamApiClient->getPlayerSummaries($accounts->implode('steamid', ','));
+                    echo "getPlayerSummaries() succeeded!\n";
+                    break;
+                } catch (ClientException $e) {
+                    if ($e->getResponse()->getStatusCode() == 429) {
+                        echo "getPlayerSummaries() hit 429, retrying after 5s...\n";
+                        sleep(5);
+                    } else {
+                        throw $e;
+                    }
+                }
+            }
+
+            while (true) {
+                try {
+                    $bans = $steamApiClient->getPlayerBans($accounts->implode('steamid', ','));
+                    echo "getPlayerBans() succeeded!\n";
+                    break;
+                } catch (ClientException $e) {
+                    if ($e->getResponse()->getStatusCode() == 429) {
+                        echo "getPlayerBans() hit 429, retrying after 5s...\n";
+                        sleep(5);
+                    } else {
+                        throw $e;
+                    }
+                }
+            }
 
             foreach ($accounts as $account) {
                 $summary = array_filter($summaries, function ($e) use ($account) {
