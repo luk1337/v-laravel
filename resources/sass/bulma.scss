@@ -76,5 +76,5 @@ $pagination-current-background-color: lighten($link-focus-border, 5);
 @import 'bulma/sass/helpers/_all';
 @import 'bulma/sass/layout/_all';
 
-@import 'bulma-checkradio';
+@import 'bulma-checkradio/src/sass/index.sass';
 @import 'bulma-tooltip';
