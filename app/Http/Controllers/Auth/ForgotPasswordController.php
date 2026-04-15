@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Arcanedev\NoCaptcha\Rules\CaptchaRule;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 
@@ -42,7 +41,7 @@ class ForgotPasswordController extends Controller
     {
         $this->validate($request, [
             'email' => ['required', 'email'],
-            'g-recaptcha-response' => ['required', new CaptchaRule],
+            'g-recaptcha-response' => ['required', 'captcha'],
         ]);
     }
 }

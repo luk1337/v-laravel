@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="field">
-                        {!! no_captcha()->display(null, ['data-theme' => 'dark']) !!}
+                        {!! NoCaptcha::display(['data-theme' => 'dark']) !!}
 
                         @error('g-recaptcha-response')
                         <p class="help is-danger">{{ $message }}</p>
@@ -65,5 +65,5 @@
 @endsection
 
 @section('scripts')
-    {!! no_captcha()->script() !!}
+    {!! NoCaptcha::renderJs('en') !!}
 @endsection
